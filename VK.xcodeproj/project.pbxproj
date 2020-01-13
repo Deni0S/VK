@@ -9,13 +9,14 @@
 /* Begin PBXBuildFile section */
 		922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF223CD14EF00908C68 /* AppDelegate.swift */; };
 		922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF423CD14EF00908C68 /* SceneDelegate.swift */; };
-		922C6FF723CD14EF00908C68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF623CD14EF00908C68 /* ViewController.swift */; };
 		922C6FFA23CD14EF00908C68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922C6FF823CD14EF00908C68 /* Main.storyboard */; };
 		922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FFB23CD14EF00908C68 /* VK.xcdatamodeld */; };
 		922C6FFF23CD14EF00908C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 922C6FFE23CD14EF00908C68 /* Assets.xcassets */; };
 		922C700223CD14EF00908C68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922C700023CD14EF00908C68 /* LaunchScreen.storyboard */; };
 		922C700D23CD14EF00908C68 /* VKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C700C23CD14EF00908C68 /* VKTests.swift */; };
 		922C701823CD14EF00908C68 /* VKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C701723CD14EF00908C68 /* VKUITests.swift */; };
+		922C702A23CD1CD100908C68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702923CD1CD100908C68 /* LoginViewController.swift */; };
+		922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Layer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,6 @@
 		922C6FEF23CD14EF00908C68 /* VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C6FF223CD14EF00908C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		922C6FF423CD14EF00908C68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		922C6FF623CD14EF00908C68 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		922C6FF923CD14EF00908C68 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		922C6FFC23CD14EF00908C68 /* VK.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VK.xcdatamodel; sourceTree = "<group>"; };
 		922C6FFE23CD14EF00908C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +51,8 @@
 		922C701323CD14EF00908C68 /* VKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C701723CD14EF00908C68 /* VKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUITests.swift; sourceTree = "<group>"; };
 		922C701923CD14EF00908C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		922C702923CD1CD100908C68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		922C702E23CD330600908C68 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				922C6FF123CD14EF00908C68 /* VK */,
+				922C702B23CD32C000908C68 /* Helpers */,
 				922C700B23CD14EF00908C68 /* VKTests */,
 				922C701623CD14EF00908C68 /* VKUITests */,
 				922C6FF023CD14EF00908C68 /* Products */,
@@ -103,10 +106,9 @@
 			children = (
 				922C6FF223CD14EF00908C68 /* AppDelegate.swift */,
 				922C6FF423CD14EF00908C68 /* SceneDelegate.swift */,
-				922C6FF623CD14EF00908C68 /* ViewController.swift */,
-				922C6FF823CD14EF00908C68 /* Main.storyboard */,
+				922C702523CD167F00908C68 /* View */,
+				922C702623CD169900908C68 /* Controllers */,
 				922C6FFE23CD14EF00908C68 /* Assets.xcassets */,
-				922C700023CD14EF00908C68 /* LaunchScreen.storyboard */,
 				922C700323CD14EF00908C68 /* Info.plist */,
 				922C6FFB23CD14EF00908C68 /* VK.xcdatamodeld */,
 			);
@@ -129,6 +131,31 @@
 				922C701923CD14EF00908C68 /* Info.plist */,
 			);
 			path = VKUITests;
+			sourceTree = "<group>";
+		};
+		922C702523CD167F00908C68 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				922C700023CD14EF00908C68 /* LaunchScreen.storyboard */,
+				922C6FF823CD14EF00908C68 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		922C702623CD169900908C68 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				922C702923CD1CD100908C68 /* LoginViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		922C702B23CD32C000908C68 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				922C702E23CD330600908C68 /* UIView+Layer.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +289,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				922C702A23CD1CD100908C68 /* LoginViewController.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,
-				922C6FF723CD14EF00908C68 /* ViewController.swift in Sources */,
 				922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */,
 				922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */,
+				922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
