@@ -38,7 +38,11 @@ class LoginViewController: UIViewController {
         }
     }
     
-    // MARK: - Проверка логина и пароля
+    // MARK: - Кнопка выйти
+    @IBAction func logOutVK(unwindSegue: UIStoryboardSegue) {
+    }
+    
+    // MARK: - Проверка логина и пароля при переходе
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         // Проверяем данные
         let checkResult = checkUserData()
@@ -57,7 +61,7 @@ class LoginViewController: UIViewController {
             return false
         }
         // Проверяем верны ли они
-        if login == "" && password == "" {
+        if login == "admin" && password == "admin" {
             return true
         } else {
             return false
@@ -102,8 +106,8 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Подписываемся на уведомление об исчезновении клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        // Скрыть NavigationController с некоторых окон
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        // Скрыть NavigationController с окна Login (Перенесли в Storyboard)
+//        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - Когда закрывается ViewController
@@ -112,8 +116,8 @@ class LoginViewController: UIViewController {
         // Отписаться от уведомлений, когда они не нужны
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-        // Показать NavigationController на следующих окнах
-        navigationController?.setNavigationBarHidden(false, animated: true)
+        // Показать NavigationController на последующих окнах (Перенесли в Storyboard)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // MARK: - Исчезновение клавиатуры при клике по пустому месту
