@@ -1,5 +1,5 @@
 //
-//  GroupSearchController.swift
+//  GroupSearchVC.swift
 //  VK
 //
 //  Created by Денис Баринов on 21.1.20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GroupSearchController: UITableViewController {
+class GroupSearchVC: UITableViewController {
     var groupsSearch = [
         "Подводная охота",
         "Музыка в дорогу",

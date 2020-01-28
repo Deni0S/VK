@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  LoginVC.swift
 //  VK
 //
 //  Created by Денис Баринов on 14.1.20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var loginText: UILabel!
     @IBOutlet weak var loginTextInput: UITextField!
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
             return false
         }
         // Проверяем верны ли они
-        if login == "admin" && password == "admin" {
+        if login == "" && password == "" { //admin
             return true
         } else {
             return false

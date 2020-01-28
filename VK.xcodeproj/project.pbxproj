@@ -15,17 +15,20 @@
 		922C700223CD14EF00908C68 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922C700023CD14EF00908C68 /* LaunchScreen.storyboard */; };
 		922C700D23CD14EF00908C68 /* VKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C700C23CD14EF00908C68 /* VKTests.swift */; };
 		922C701823CD14EF00908C68 /* VKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C701723CD14EF00908C68 /* VKUITests.swift */; };
-		922C702A23CD1CD100908C68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702923CD1CD100908C68 /* LoginViewController.swift */; };
+		922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702923CD1CD100908C68 /* LoginVC.swift */; };
 		922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Layer.swift */; };
 		929A32C923D63C18006B43D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32C823D63C18006B43D6 /* User.swift */; };
 		929A32CB23D63C25006B43D6 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CA23D63C25006B43D6 /* Group.swift */; };
-		929A32CE23D63E00006B43D6 /* FriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CD23D63E00006B43D6 /* FriendController.swift */; };
+		929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CD23D63E00006B43D6 /* FriendVC.swift */; };
 		929A32D023D63E59006B43D6 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CF23D63E59006B43D6 /* FriendCell.swift */; };
 		929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D323D64CB4006B43D6 /* GroupCell.swift */; };
-		929A32D623D64CE7006B43D6 /* GroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D523D64CE7006B43D6 /* GroupController.swift */; };
-		929A32D923D64D8A006B43D6 /* GroupSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D823D64D8A006B43D6 /* GroupSearchController.swift */; };
+		929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D523D64CE7006B43D6 /* GroupVC.swift */; };
+		929A32D923D64D8A006B43D6 /* GroupSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */; };
 		929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */; };
 		929A32DE23D658DE006B43D6 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32DD23D658DE006B43D6 /* TableViewController.swift */; };
+		92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */; };
+		92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B823DF93880095C5CA /* PhotoFriendVC.swift */; };
+		92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,17 +63,20 @@
 		922C701323CD14EF00908C68 /* VKUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C701723CD14EF00908C68 /* VKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUITests.swift; sourceTree = "<group>"; };
 		922C701923CD14EF00908C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		922C702923CD1CD100908C68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		922C702923CD1CD100908C68 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		922C702E23CD330600908C68 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		929A32C823D63C18006B43D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		929A32CA23D63C25006B43D6 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
-		929A32CD23D63E00006B43D6 /* FriendController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendController.swift; sourceTree = "<group>"; };
+		929A32CD23D63E00006B43D6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		929A32CF23D63E59006B43D6 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		929A32D323D64CB4006B43D6 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
-		929A32D523D64CE7006B43D6 /* GroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupController.swift; sourceTree = "<group>"; };
-		929A32D823D64D8A006B43D6 /* GroupSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchController.swift; sourceTree = "<group>"; };
+		929A32D523D64CE7006B43D6 /* GroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVC.swift; sourceTree = "<group>"; };
+		929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchVC.swift; sourceTree = "<group>"; };
 		929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchCell.swift; sourceTree = "<group>"; };
 		929A32DD23D658DE006B43D6 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCustom.swift; sourceTree = "<group>"; };
+		92C011B823DF93880095C5CA /* PhotoFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendVC.swift; sourceTree = "<group>"; };
+		92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 			children = (
 				922C6FF223CD14EF00908C68 /* AppDelegate.swift */,
 				922C6FF423CD14EF00908C68 /* SceneDelegate.swift */,
+				92C011B323DDD3FF0095C5CA /* UIElements */,
 				922C702523CD167F00908C68 /* View */,
 				922C702623CD169900908C68 /* Controllers */,
 				929A32C723D63AC0006B43D6 /* Model */,
@@ -164,7 +171,7 @@
 		922C702623CD169900908C68 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				922C702923CD1CD100908C68 /* LoginViewController.swift */,
+				922C702923CD1CD100908C68 /* LoginVC.swift */,
 				929A32CC23D63DD5006B43D6 /* Friend */,
 				929A32D123D64C7A006B43D6 /* Group */,
 				929A32D723D64D69006B43D6 /* GroupSearch */,
@@ -193,7 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				929A32CF23D63E59006B43D6 /* FriendCell.swift */,
-				929A32CD23D63E00006B43D6 /* FriendController.swift */,
+				929A32CD23D63E00006B43D6 /* FriendVC.swift */,
+				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
+				92C011B823DF93880095C5CA /* PhotoFriendVC.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -202,7 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				929A32D323D64CB4006B43D6 /* GroupCell.swift */,
-				929A32D523D64CE7006B43D6 /* GroupController.swift */,
+				929A32D523D64CE7006B43D6 /* GroupVC.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
@@ -211,10 +220,18 @@
 			isa = PBXGroup;
 			children = (
 				929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */,
-				929A32D823D64D8A006B43D6 /* GroupSearchController.swift */,
+				929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */,
 				929A32DD23D658DE006B43D6 /* TableViewController.swift */,
 			);
 			path = GroupSearch;
+			sourceTree = "<group>";
+		};
+		92C011B323DDD3FF0095C5CA /* UIElements */ = {
+			isa = PBXGroup;
+			children = (
+				92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */,
+			);
+			path = UIElements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,16 +365,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				929A32D623D64CE7006B43D6 /* GroupController.swift in Sources */,
+				929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */,
 				929A32DE23D658DE006B43D6 /* TableViewController.swift in Sources */,
 				929A32CB23D63C25006B43D6 /* Group.swift in Sources */,
-				922C702A23CD1CD100908C68 /* LoginViewController.swift in Sources */,
+				922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */,
+				92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,
 				929A32C923D63C18006B43D6 /* User.swift in Sources */,
-				929A32D923D64D8A006B43D6 /* GroupSearchController.swift in Sources */,
+				929A32D923D64D8A006B43D6 /* GroupSearchVC.swift in Sources */,
+				92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */,
 				929A32D023D63E59006B43D6 /* FriendCell.swift in Sources */,
+				92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
-				929A32CE23D63E00006B43D6 /* FriendController.swift in Sources */,
+				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,
 				922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */,
 				929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */,
 				922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */,

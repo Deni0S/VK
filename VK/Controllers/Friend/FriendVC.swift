@@ -1,41 +1,24 @@
 //
-//  GroupController.swift
+//  FriendVC.swift
 //  VK
 //
-//  Created by Денис Баринов on 21.1.20.
+//  Created by Денис Баринов on 20.1.20.
 //  Copyright © 2020 Денис Баринов. All rights reserved.
 //
 
 import UIKit
 
-class GroupController: UITableViewController {
-    var groups = ["Дом"]
-
+class FriendVC: UITableViewController {
+    var friends = [
+        "Михаил Лаврентьев",
+        "Григорий Афанасьев",
+        "Виктор Мартынов"
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    // Создадим обратны переход при добавлении групп
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-        // Проверим тот ли переход по идентификатору
-        if segue.identifier == "addGroup" {
-            // Получаем ссылку на контроллер с которого переходим
-            let groupSearchController = segue.source as! GroupSearchController
-            // Получаем индекс выделенной ячейки
-            if let indexPath = groupSearchController.tableView.indexPathForSelectedRow {
-                // Получаем группу по инедексу
-                let groupSearch = groupSearchController.groupsSearch[indexPath.row]
-                // Проверяем что такой группы нет в списке
-                if !groups.contains(groupSearch) {
-                    // Добавляем группу в список
-                    groups.append(groupSearch)
-                    // Обновляем таблицу
-                    tableView.reloadData()
-                }
-            }
-        }
-    }
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -44,16 +27,16 @@ class GroupController: UITableViewController {
 
     // Задаем количество строк равное количесву элементов в массиве
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groups.count
+        return friends.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Получаем ячейку из пула
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
-        // Получаем имя группы для конкретной строки
-        let group = groups[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
+        // Получаем имя друга для конкретной строки
+        let friend = friends[indexPath.row]
         // Устанавливаем имя в надпись ячейки
-        cell.groupName?.text = group
+        cell.friendName?.text = friend
         return cell
     }
     
@@ -65,22 +48,22 @@ class GroupController: UITableViewController {
     }
     */
 
+    /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        // Если была нажата кнопка удалить
         if editingStyle == .delete {
-            // Удаляем группу из массива
-            groups.remove(at: indexPath.row)
-            // И удаляем строку из массива
+            // Delete the row from the data source
             tableView.deleteRows(at: [indexPath], with: .fade)
-        //} else if editingStyle == .insert {
+        } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
+    */
 
     /*
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
     }
     */
 

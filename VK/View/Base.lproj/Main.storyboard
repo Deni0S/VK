@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Login View Controller-->
+        <!--LoginVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="Login View">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -155,7 +155,7 @@
         <!--Группы-->
         <scene sceneID="vV3-g9-hap">
             <objects>
-                <tableViewController id="Stl-Dt-Nzw" customClass="GroupController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Stl-Dt-Nzw" customClass="GroupVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yYo-QP-c2b">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -225,7 +225,7 @@
         <!--Друзья-->
         <scene sceneID="ZVf-yn-uGT">
             <objects>
-                <tableViewController id="fEq-vf-TLH" customClass="FriendController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="fEq-vf-TLH" customClass="FriendVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="i5B-Kw-4Hr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -238,12 +238,43 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PQL-cT-Tqm" userLabel="Avatar">
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-oX-stb" customClass="AvatarViewCustom" customModule="VK" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PQL-cT-Tqm" userLabel="Avatar">
                                             <rect key="frame" x="20" y="17" width="70" height="66.666666666666671"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="Isb-Wi-C0U"/>
                                                 <constraint firstAttribute="width" constant="70" id="QCA-op-0KO"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                    <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-2X-P38" userLabel="Name">
                                             <rect key="frame" x="130" y="39.666666666666664" width="45" height="21"/>
@@ -252,6 +283,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
                                         <constraint firstItem="PQL-cT-Tqm" firstAttribute="top" secondItem="UFY-tm-Do6" secondAttribute="topMargin" constant="4" id="7lk-Oj-Jmc"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="PQL-cT-Tqm" secondAttribute="bottom" constant="4" id="PB3-82-wSU"/>
@@ -291,7 +323,7 @@
         <!--Поиск-->
         <scene sceneID="h2w-0A-vm6">
             <objects>
-                <tableViewController id="Dr5-P6-F43" customClass="GroupSearchController" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Dr5-P6-F43" customClass="GroupSearchVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cZA-hX-CFQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -376,39 +408,63 @@
         <!--Фотографии-->
         <scene sceneID="k6j-ck-Gb6">
             <objects>
-                <collectionViewController id="eqN-ai-gWm" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Vc9-JW-g1q">
+                <collectionViewController id="eqN-ai-gWm" customClass="PhotoFriendVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="PhotoFriendCell" dataMode="prototypes" id="Vc9-JW-g1q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lTj-qX-fKR">
-                            <size key="itemSize" width="163" height="168"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lTj-qX-fKR">
+                            <size key="itemSize" width="185" height="210"/>
+                            <size key="estimatedItemSize" width="185" height="210"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6hU-Lg-lfd">
-                                <rect key="frame" x="0.0" y="0.0" width="163" height="168"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoFriendCell" id="6hU-Lg-lfd" customClass="PhotoFriendCell" customModule="VK" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="185" height="210"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Iob-o9-6IY">
-                                    <rect key="frame" x="0.0" y="0.0" width="163" height="168"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="185" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.2.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nOh-kw-bLP">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nOh-kw-bLP">
                                             <rect key="frame" x="5" y="7" width="150" height="150.33333333333331"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="Kwa-Gi-MIt"/>
                                                 <constraint firstAttribute="width" secondItem="nOh-kw-bLP" secondAttribute="height" multiplier="157:161" id="cXZ-g7-GTR"/>
                                             </constraints>
                                         </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfR-2D-lZW">
+                                            <rect key="frame" x="110.66666666666667" y="168.66666666666666" width="20.333333333333329" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="25" id="syn-vR-XfI"/>
+                                            </constraints>
+                                            <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" image="hand.thumbsup" catalog="system"/>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FoR-Pv-8gp">
+                                            <rect key="frame" x="64.666666666666671" y="170.66666666666666" width="31" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="rfR-2D-lZW" firstAttribute="leading" secondItem="FoR-Pv-8gp" secondAttribute="trailing" constant="15" id="GkZ-OG-j5O"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rfR-2D-lZW" secondAttribute="trailing" constant="20" symbolic="YES" id="Ios-Rd-90r"/>
+                                        <constraint firstItem="rfR-2D-lZW" firstAttribute="top" secondItem="nOh-kw-bLP" secondAttribute="bottom" constant="10" id="SZ2-Fg-Z2R"/>
                                         <constraint firstItem="nOh-kw-bLP" firstAttribute="leading" secondItem="Iob-o9-6IY" secondAttribute="leading" constant="5" id="Uzw-S6-nxW"/>
                                         <constraint firstItem="nOh-kw-bLP" firstAttribute="top" secondItem="Iob-o9-6IY" secondAttribute="top" constant="5" id="jnY-SG-IEY"/>
+                                        <constraint firstItem="FoR-Pv-8gp" firstAttribute="centerY" secondItem="rfR-2D-lZW" secondAttribute="centerY" id="rF1-IZ-Fzp"/>
+                                        <constraint firstItem="FoR-Pv-8gp" firstAttribute="centerX" secondItem="nOh-kw-bLP" secondAttribute="centerX" id="wNF-in-1PO"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <size key="customSize" width="163" height="168"/>
+                                <size key="customSize" width="185" height="210"/>
+                                <connections>
+                                    <outlet property="likeButton" destination="rfR-2D-lZW" id="Fpb-a5-6Dd"/>
+                                    <outlet property="likeLabel" destination="FoR-Pv-8gp" id="Cyy-Uy-8ej"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -491,8 +547,8 @@
     </scenes>
     <resources>
         <image name="VK" width="120" height="120"/>
+        <image name="hand.thumbsup" catalog="system" width="64" height="64"/>
         <image name="person.2" catalog="system" width="64" height="40"/>
-        <image name="person.2.fill" catalog="system" width="64" height="40"/>
         <image name="person.3" catalog="system" width="72" height="35"/>
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.fill" catalog="system" width="64" height="60"/>
