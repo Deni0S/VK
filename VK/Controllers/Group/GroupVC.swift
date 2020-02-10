@@ -13,6 +13,7 @@ class GroupVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView()
     }
 
     // Создадим обратны переход при добавлении групп
