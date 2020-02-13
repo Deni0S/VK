@@ -14,6 +14,11 @@ class LoginVC: UIViewController {
     @IBOutlet weak var loginTextInput: UITextField!
     @IBOutlet weak var passwordText: UILabel!
     @IBOutlet weak var passwordTextInput: UITextField!
+    @IBOutlet weak var activityView: UIView!
+    @IBOutlet weak var activityPoint1: UIView!
+    @IBOutlet weak var activityPoint2: UIView!
+    @IBOutlet weak var activityPoint3: UIView!
+    var timerAnimation = Timer()
     
     // MARK: - Сразу после загрузки ViewController
     override func viewDidLoad() {
@@ -42,13 +47,39 @@ class LoginVC: UIViewController {
     @IBAction func logOutVK(unwindSegue: UIStoryboardSegue) {
     }
     
+    // MARK: - Анимация перехода
+    func pointAnimation() {
+        activityView.isHidden = false
+        self.activityPoint1.alpha = 0.3
+        timerAnimation = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            UIView.animate(withDuration: 0.3, animations: {
+                self.activityPoint1.alpha = 0.3
+            }) { _ in
+                self.activityPoint1.alpha = 1
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.activityPoint2.alpha = 0.3
+                }) { _ in
+                    self.activityPoint2.alpha = 1
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.activityPoint3.alpha = 0.3
+                    }) { _ in
+                        self.activityPoint3.alpha = 1
+                    }
+                }
+            }
+        }
+    }
+    
     // MARK: - Проверка логина и пароля при переходе
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        // Запустим анимацию перехода
+        pointAnimation()
         // Проверяем данные
         let checkResult = checkUserData()
-        // Если данные неверны, покажем ошибку
+        // Если данные неверны, покажем ошибку и уберем аниацию перехода с экрана
         if !checkResult {
             showLoginError()
+            activityView.isHidden = true
         }
         // Вернем результат
         return checkResult
@@ -76,7 +107,7 @@ class LoginVC: UIViewController {
         let action = UIAlertAction(title: "ОК", style: .cancel, handler: nil)
         // Добавляем кнопку на UIAlterAction
         alter.addAction(action)
-        // Покаываем UIAlterController
+        // Показываем UIAlterController
         present(alter, animated: true, completion: nil)
     }
     
@@ -118,6 +149,9 @@ class LoginVC: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         // Показать NavigationController на последующих окнах (Перенесли в Storyboard)
 //        navigationController?.setNavigationBarHidden(false, animated: true)
+        // Скрываем анимацию и остановить таймер для последующего открытия контроллера
+        activityView.isHidden = true
+        timerAnimation.invalidate()
     }
     
     // MARK: - Исчезновение клавиатуры при клике по пустому месту

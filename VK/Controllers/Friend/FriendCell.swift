@@ -11,6 +11,23 @@ import UIKit
 class FriendCell: UITableViewCell {
     @IBOutlet weak var friendAvatar: UIImageView!
     @IBOutlet weak var friendName: UILabel!
+    @IBOutlet weak var avatarAnimationButton: UIButton!
+    
+    func setupCell() {
+        avatarAnimationButton.addTarget(self, action: #selector(avatarAnimationButtonOnTap), for: .touchDown)
+    }
+    
+    @objc func avatarAnimationButtonOnTap() {
+        self.friendAvatar.frame.size = CGSize(width: 30, height: 30)
+        UIView.animate(withDuration: 0.9,
+                       delay: 0,
+                       usingSpringWithDamping: 0.3,
+                       initialSpringVelocity: 0.5,
+                       options: .curveEaseIn,
+                       animations: {
+                        self.friendAvatar.frame.size = CGSize(width: 70, height: 70)
+        })
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

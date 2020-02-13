@@ -55,6 +55,7 @@ class GroupVC: UITableViewController {
         let group = groups[indexPath.row]
         // Устанавливаем имя в надпись ячейки
         cell.groupName?.text = group
+        cell.setupCell()
         return cell
     }
     

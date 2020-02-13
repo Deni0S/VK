@@ -122,6 +122,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         }
         // Устанавливаем имя в надпись ячейки
         cell.friendName?.text = friend
+        cell.setupCell()
         return cell
     }
     

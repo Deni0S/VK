@@ -12,22 +12,43 @@ class PhotoFriendCell: UICollectionViewCell {
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     var likeCount: Int = 0
+    var timeDuration = 0.5
     
     func setupCell() {
-    likeButton.addTarget(self, action: #selector(likeOnTap), for: .touchDown)
+        likeButton.addTarget(self, action: #selector(likeOnTap), for: .touchDown)
     }
     
     @objc private func likeOnTap() {
         if likeCount == 0 {
             likeCount = 1
-            likeLabel.text = "1"
-            likeLabel.textColor = .red
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+            UIView.transition(with: likeLabel,
+                              duration: timeDuration,
+                              options: .transitionFlipFromLeft,
+                              animations: {
+                                self.likeLabel.text = "1"
+                                self.likeLabel.textColor = .red
+            })
+            UIView.transition(with: likeButton,
+                              duration: timeDuration,
+                              options: .transitionCurlDown,
+                              animations: {
+                                self.likeButton.setImage(UIImage(systemName: "hand.thumbsup.fill"), for: .normal)
+            })
         } else {
             likeCount = 0
-            likeLabel.text = "0"
-            likeLabel.textColor = .label
-            likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+            UIView.transition(with: likeLabel,
+                              duration: timeDuration,
+                              options: .transitionFlipFromRight,
+                              animations: {
+                                self.likeLabel.text = "0"
+                                self.likeLabel.textColor = .label
+            })
+            UIView.transition(with: likeButton,
+                              duration: timeDuration,
+                              options: .transitionCurlUp,
+                              animations: {
+                                self.likeButton.setImage(UIImage(systemName: "hand.thumbsup"), for: .normal)
+            })
         }
     }
 }
