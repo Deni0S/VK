@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X2s-QB-cx8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jjd-BL-CC6">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -87,7 +87,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="InterButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Hm-xi-AFC"/>
-                                            <segue destination="qv4-NX-Jug" kind="modal" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Kz3-qx-jEl"/>
+                                            <segue destination="qv4-NX-Jug" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Kz3-qx-jEl"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKW-N8-KhL">
@@ -210,7 +210,7 @@
                     <viewLayoutGuide key="frameLayoutGuide" id="I23-Xe-QHQ"/>
                 </scrollView>
             </objects>
-            <point key="canvasLocation" x="1000.0000000000001" y="105.80357142857143"/>
+            <point key="canvasLocation" x="987" y="-226"/>
         </scene>
         <!--Группы-->
         <scene sceneID="vV3-g9-hap">
@@ -614,10 +614,46 @@
             </objects>
             <point key="canvasLocation" x="6266.666666666667" y="105.80357142857143"/>
         </scene>
+        <!--LoginVC-->
+        <scene sceneID="bfZ-Gl-Hpx">
+            <objects>
+                <viewController id="Jjd-BL-CC6" customClass="VKLoginVC" customModule="VK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nkL-0q-5oT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MrR-bP-qgJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="MrR-bP-qgJ" secondAttribute="trailing" id="5dk-Uf-SzC"/>
+                            <constraint firstItem="MrR-bP-qgJ" firstAttribute="leading" secondItem="nkL-0q-5oT" secondAttribute="leading" id="9sg-Gn-E56"/>
+                            <constraint firstAttribute="bottom" secondItem="MrR-bP-qgJ" secondAttribute="bottom" id="TBD-mz-Dg3"/>
+                            <constraint firstItem="MrR-bP-qgJ" firstAttribute="top" secondItem="nkL-0q-5oT" secondAttribute="top" id="tSw-BQ-xSK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rbh-Jk-R6B"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="MrR-bP-qgJ" id="uXz-aN-AhV"/>
+                        <segue destination="qv4-NX-Jug" kind="presentation" identifier="LoadUserData" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="Lnn-dd-AnF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4v2-vk-5tf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="986.95652173913049" y="511.60714285714283"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4bM-Co-5LP">
             <objects>
                 <tabBarController id="qv4-NX-Jug" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gNZ-YP-njg"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E8Y-3p-6Dr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -717,6 +753,7 @@
         <!--Navigation Controller-->
         <scene sceneID="IJS-zg-qGU">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ4-Lj-eCY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="X2s-QB-cx8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -731,9 +768,8 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4lP-SB-bhU"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ4-Lj-eCY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="91" y="106"/>
+            <point key="canvasLocation" x="138" y="-226"/>
         </scene>
         <!--Группы-->
         <scene sceneID="WVe-MD-WI1">
@@ -808,4 +844,7 @@
         <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="sun.haze" catalog="system" width="64" height="58"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Lnn-dd-AnF"/>
+    </inferredMetricsTieBreakers>
 </document>

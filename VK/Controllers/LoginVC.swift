@@ -19,8 +19,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var activityPoint2: UIView!
     @IBOutlet weak var activityPoint3: UIView!
     var timerAnimation = Timer()
-    // Создадим объект Singleton для сессии VK
-    let session = Session.instance
     
     // MARK: - Сразу после загрузки ViewController
     override func viewDidLoad() {
@@ -41,7 +39,7 @@ class LoginVC: UIViewController {
         if login == "admin" && password == "admin" {
             print("Успешная авторизация")
             // Сохранить логин пользователя в singleton
-            session.userid = login
+            Session.instance.userid = login
         } else {
             print("Ошибка в Логине(\(loginTextInput.text!)) или Пароле(\(passwordTextInput.text!))")
         }
