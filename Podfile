@@ -7,7 +7,9 @@ target 'VK' do
 
   # Pods for VK
   pod 'Alamofire'
-
+  pod 'SwiftyJSON'
+  pod 'Kingfisher'
+  
   target 'VKTests' do
     inherit! :search_paths
     # Pods for testing

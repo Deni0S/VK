@@ -26,6 +26,14 @@ class VKLoginVC: UIViewController {
         }
     }
     
+    // MARK: - Кнопка выйти
+    @IBAction func logOutVK(unwindSegue: UIStoryboardSegue) {
+        // Выйти из VK
+        Session.instance.logoutVK()
+        // Уничтожить контроллер представления, который представил этот контроллер
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
     // Вернуть URLRequest
     func vkAuthRequest() -> URLRequest? {
         // URL Components
@@ -49,10 +57,10 @@ class VKLoginVC: UIViewController {
     // Вернуть данные пользователя
     func loadData() {
         let service = VKService()
-        service.getPhoto()
+        service.getPhoto(id: "")
         service.getFriend()
         service.getGroup()
-        service.getGroupSearch()
+        service.getGroupSearch(search: "Music")
     }
 }
 
@@ -99,6 +107,8 @@ extension VKLoginVC: WKNavigationDelegate {
             Session.instance.token = token
             // Вывести данные в консоль
             loadData()
+            // Перейти в контроллер LoadUserData
+            performSegue(withIdentifier: "LoadUserData", sender: nil)
         }
         // Обязательно нужно вернуть разрешает (allow) или запрещает (cancel) загрузить адреc
         decisionHandler(.allow)

@@ -11,24 +11,33 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class PhotoFriendVC: UICollectionViewController {
-    var photos = [
-        "person.fill",
-        "person.fill",
-        "person.fill",
-        "person.fill"
-    ]
+    var photos: [Photo] = []
     private var buttons: [UIButton] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        // Загрузим данные
+        loadFriendData()
+    }
+    
+    // Загрузить данные
+    func loadFriendData() {
+        let service = VKService()
+        service.getPhoto(id: Session.instance.photoUserId) { photos, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let photos = photos {
+                self.photos = photos
+                self.collectionView?.reloadData()
+            }
+        }
+        Session.instance.photoUserId = ""
     }
 
 //    @objc private func likeOnTap(_ sender: String) {
@@ -60,8 +69,8 @@ class PhotoFriendVC: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFriendCell", for: indexPath) as! PhotoFriendCell
-        cell.likeLabel?.text = "\(cell.likeCount)"
-        cell.setupCell()
+        // Заполнить ячейку полученными данными и действиями
+        cell.fillCell(photos[indexPath.row])
         return cell
     }
 

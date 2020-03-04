@@ -9,14 +9,31 @@
 import UIKit
 
 class GroupVC: UITableViewController {
-    var groups = ["Дом"]
+    var groups: [Group] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        // Загрузим данные
+        loadGroupData()
+    }
+    
+    // Загрузить данные
+    func loadGroupData () {
+        let service = VKService()
+        service.getGroup() { groups, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let groups = groups {
+                self.groups = groups
+                self.tableView?.reloadData()
+            }
+        }
     }
 
-    // Создадим обратны переход при добавлении групп
+    // Создадим обратный переход при добавлении групп
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         // Проверим тот ли переход по идентификатору
         if segue.identifier == "addGroup" {
@@ -27,12 +44,12 @@ class GroupVC: UITableViewController {
                 // Получаем группу по инедексу
                 let groupSearch = groupSearchVC.groupsSearch[indexPath.row]
                 // Проверяем что такой группы нет в списке
-                if !groups.contains(groupSearch) {
+//                if !groups.contains(groupSearch) {
                     // Добавляем группу в список
                     groups.append(groupSearch)
                     // Обновляем таблицу
                     tableView.reloadData()
-                }
+//                }
             }
         }
     }
@@ -53,9 +70,8 @@ class GroupVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         // Получаем имя группы для конкретной строки
         let group = groups[indexPath.row]
-        // Устанавливаем имя в надпись ячейки
-        cell.groupName?.text = group
-        cell.setupCell()
+        // Заполнить ячейку полученными данными и действиями
+        cell.fillCell(group)
         return cell
     }
     

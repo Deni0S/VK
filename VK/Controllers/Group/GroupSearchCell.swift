@@ -12,6 +12,14 @@ class GroupSearchCell: UITableViewCell {
     @IBOutlet weak var groupSearchAvatar: UIImageView!
     @IBOutlet weak var groupSearchName: UILabel!
     
+    // Заполнить ячейку полученными данными и действиями
+    func fillCell(_ group: Group) {
+        groupSearchName.text = "\(group.Name)"
+        if let GroupImage = URL(string: "\(group.PhotoGroup)") {
+            groupSearchAvatar.kf.setImage(with: GroupImage)
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

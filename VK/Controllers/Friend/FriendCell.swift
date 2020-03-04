@@ -13,7 +13,16 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var friendName: UILabel!
     @IBOutlet weak var avatarAnimationButton: UIButton!
     
-    func setupCell() {
+    // Заполнить ячейку полученными данными
+    func fillCell(_ friend: User) {
+        friendName.text = "\(friend.FirstName) \(friend.LastName)"
+        if let PhotoImage = URL(string: "\(friend.PhotoFriend)") {
+            friendAvatar.kf.setImage(with: PhotoImage)
+        }
+    }
+    
+    // Установить действия в ячейку
+    func setupAction() {
         avatarAnimationButton.addTarget(self, action: #selector(avatarAnimationButtonOnTap), for: .touchDown)
     }
     
@@ -31,13 +40,11 @@ class FriendCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
         // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
 

@@ -234,6 +234,11 @@
                                                 <constraint firstAttribute="width" constant="70" id="dBu-RF-8Xw"/>
                                                 <constraint firstAttribute="height" constant="70" id="zfd-VO-zaf"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="15"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uBx-Aj-CNe" userLabel="Animation Button">
                                             <rect key="frame" x="20" y="15" width="70" height="70"/>
@@ -273,7 +278,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Группы" id="pIG-JR-aIg">
-                        <barButtonItem key="leftBarButtonItem" title="Поиск" id="tud-5I-DWc">
+                        <barButtonItem key="leftBarButtonItem" title="Поиск" style="plain" id="tud-5I-DWc">
                             <connections>
                                 <segue destination="Dr5-P6-F43" kind="show" id="ePU-im-5MR"/>
                             </connections>
@@ -306,46 +311,54 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mfd-oX-stb" customClass="AvatarViewCustom" customModule="VK" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PQL-cT-Tqm" userLabel="Avatar">
-                                            <rect key="frame" x="20" y="17" width="70" height="66.666666666666671"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8w-i2-zcH" userLabel="Avatar View">
+                                            <rect key="frame" x="20" y="20" width="70" height="60"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="PQL-cT-Tqm" userLabel="Avatar">
+                                                    <rect key="frame" x="0.0" y="2" width="70" height="56.666666666666671"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
+                                                            <real key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="35"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                            <color key="value" red="0.29099708800000001" green="0.45513165" blue="0.64619600769999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                            <real key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="70" id="Isb-Wi-C0U"/>
-                                                <constraint firstAttribute="width" constant="70" id="QCA-op-0KO"/>
+                                                <constraint firstAttribute="bottom" secondItem="PQL-cT-Tqm" secondAttribute="bottom" id="IBA-8h-NE2"/>
+                                                <constraint firstAttribute="trailing" secondItem="PQL-cT-Tqm" secondAttribute="trailing" id="KmD-W0-0Vf"/>
+                                                <constraint firstItem="PQL-cT-Tqm" firstAttribute="top" secondItem="O8w-i2-zcH" secondAttribute="top" id="VAA-mS-kFq"/>
+                                                <constraint firstAttribute="width" constant="70" id="bYS-ZV-0Sl"/>
+                                                <constraint firstItem="PQL-cT-Tqm" firstAttribute="leading" secondItem="O8w-i2-zcH" secondAttribute="leading" id="jJD-9x-59Z"/>
+                                                <constraint firstAttribute="height" constant="70" id="vDm-2j-byV"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
-                                                    <real key="value" value="10"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="34"/>
-                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                     <color key="value" red="0.29099708800000001" green="0.45513165" blue="0.64619600769999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWigth">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                     <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="35"/>
+                                                </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
-                                        </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSP-vW-oPt" userLabel="Animation Button">
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qSP-vW-oPt" userLabel="Animation Button">
                                             <rect key="frame" x="20" y="15" width="70" height="70"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnm-2X-P38" userLabel="Name">
                                             <rect key="frame" x="130" y="39.666666666666664" width="45" height="21"/>
@@ -356,16 +369,11 @@
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
-                                        <constraint firstItem="PQL-cT-Tqm" firstAttribute="top" secondItem="UFY-tm-Do6" secondAttribute="topMargin" constant="4" id="7lk-Oj-Jmc"/>
-                                        <constraint firstItem="qSP-vW-oPt" firstAttribute="trailing" secondItem="PQL-cT-Tqm" secondAttribute="trailing" id="9DZ-NS-jqW"/>
-                                        <constraint firstItem="qSP-vW-oPt" firstAttribute="bottom" secondItem="PQL-cT-Tqm" secondAttribute="bottom" id="IUr-NB-E9a"/>
-                                        <constraint firstItem="qSP-vW-oPt" firstAttribute="top" secondItem="PQL-cT-Tqm" secondAttribute="top" id="JmK-OE-PwF"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="PQL-cT-Tqm" secondAttribute="bottom" constant="4" id="PB3-82-wSU"/>
-                                        <constraint firstItem="Lnm-2X-P38" firstAttribute="leading" secondItem="PQL-cT-Tqm" secondAttribute="trailing" constant="40" id="Rps-Ka-BI9"/>
+                                        <constraint firstAttribute="bottom" secondItem="O8w-i2-zcH" secondAttribute="bottom" constant="20" id="32N-ry-cIe"/>
+                                        <constraint firstItem="O8w-i2-zcH" firstAttribute="leading" secondItem="UFY-tm-Do6" secondAttribute="leading" constant="20" id="Rit-g9-aFM"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Lnm-2X-P38" secondAttribute="trailing" constant="20" symbolic="YES" id="S1k-zp-A4Y"/>
-                                        <constraint firstItem="PQL-cT-Tqm" firstAttribute="centerY" secondItem="UFY-tm-Do6" secondAttribute="centerY" id="ZWL-3B-g5f"/>
-                                        <constraint firstItem="PQL-cT-Tqm" firstAttribute="leading" secondItem="UFY-tm-Do6" secondAttribute="leading" constant="20" id="hU3-C4-pXb"/>
-                                        <constraint firstItem="qSP-vW-oPt" firstAttribute="leading" secondItem="PQL-cT-Tqm" secondAttribute="leading" id="hil-OT-xVB"/>
+                                        <constraint firstItem="Lnm-2X-P38" firstAttribute="leading" secondItem="O8w-i2-zcH" secondAttribute="trailing" constant="40" id="nv4-z7-Py6"/>
+                                        <constraint firstItem="O8w-i2-zcH" firstAttribute="top" secondItem="UFY-tm-Do6" secondAttribute="top" constant="20" id="rij-bF-PAh"/>
                                         <constraint firstItem="Lnm-2X-P38" firstAttribute="centerY" secondItem="UFY-tm-Do6" secondAttribute="centerY" id="w0X-Tj-h28"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -384,12 +392,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Друзья" id="l48-Tx-RuJ">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="XTq-xd-Wk4">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0JR-Lu-lLN">
+                                <rect key="frame" x="20" y="7" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Поиск"/>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Выйти" id="2Ee-w5-2cm">
                             <connections>
-                                <segue destination="3i5-D6-cUk" kind="unwind" unwindAction="logOutVKWithUnwindSegue:" id="Yri-Gb-t1s"/>
+                                <segue destination="3i5-D6-cUk" kind="unwind" unwindAction="logOutVKWithUnwindSegue:" id="9a8-6R-NGh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchButton" destination="XTq-xd-Wk4" id="z05-ps-tSp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AHR-id-Ku8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="3i5-D6-cUk" userLabel="Exit" sceneMemberID="exit"/>
@@ -404,9 +422,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="O2H-V1-M5O">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GroupSearchCell" rowHeight="100" id="M5l-00-rDR" customClass="GroupSearchCell" customModule="VK" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M5l-00-rDR" id="4Kz-ZY-3NO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -456,6 +479,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="O2H-V1-M5O" id="Djg-GQ-gSI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygQ-SS-vAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Xgk-jq-MVR" userLabel="Exit" sceneMemberID="exit"/>
@@ -729,6 +755,7 @@
                                 <connections>
                                     <outlet property="likeButton" destination="rfR-2D-lZW" id="Fpb-a5-6Dd"/>
                                     <outlet property="likeLabel" destination="FoR-Pv-8gp" id="Cyy-Uy-8ej"/>
+                                    <outlet property="photoImageView" destination="nOh-kw-bLP" id="OkN-wW-bpw"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -753,7 +780,6 @@
         <!--Navigation Controller-->
         <scene sceneID="IJS-zg-qGU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ4-Lj-eCY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="X2s-QB-cx8" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
@@ -768,6 +794,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4lP-SB-bhU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lQ4-Lj-eCY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="138" y="-226"/>
         </scene>
@@ -845,6 +872,6 @@
         <image name="sun.haze" catalog="system" width="64" height="58"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Lnn-dd-AnF"/>
+        <segue reference="Kz3-qx-jEl"/>
     </inferredMetricsTieBreakers>
 </document>

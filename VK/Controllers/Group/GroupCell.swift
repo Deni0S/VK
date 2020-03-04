@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import Kingfisher
 
 class GroupCell: UITableViewCell {
     @IBOutlet weak var groupAvatar: UIImageView!
     @IBOutlet weak var groupName: UILabel!
     @IBOutlet weak var avatarAnimationButton: UIButton!
     
-    func setupCell() {
-    avatarAnimationButton.addTarget(self, action: #selector(avatarAnimationButtonOnTap), for: .touchDown)
+    // Заполнить ячейку полученными данными и действиями
+    func fillCell(_ group: Group) {
+        groupName.text = "\(group.Name)"
+        if let GroupImage = URL(string: "\(group.PhotoGroup)") {
+            groupAvatar.kf.setImage(with: GroupImage)
+        }
+        avatarAnimationButton.addTarget(self, action: #selector(avatarAnimationButtonOnTap), for: .touchDown)
     }
     
     @objc func avatarAnimationButtonOnTap() {
