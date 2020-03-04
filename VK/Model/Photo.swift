@@ -8,22 +8,25 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class Photo {
-    var url: String = ""
-    var text: String = ""
-    init(json: JSON) {
+class Photo: Object {
+    @objc dynamic var url: String = ""
+    @objc dynamic var text: String = ""
+    convenience init(json: JSON) {
+        self.init()
         self.url = json["sizes"][3]["url"].stringValue
         self.text = json["text"].stringValue
     }
 }
 
-// Заставить наш объект выводиться в консоль
-extension Photo: CustomStringConvertible {
-    var description: String {
-        if text != "" {
-            return "\n\n\(text): \n  \(url)"
-        }
-        return "\n\nNo name: \n  \(url)"
-    }
-}
+// У Realm свой дескриптор
+//// Заставить наш объект выводиться в консоль
+//extension Photo: CustomStringConvertible {
+//    var description: String {
+//        if text != "" {
+//            return "\n\n\(text): \n  \(url)"
+//        }
+//        return "\n\nNo name: \n  \(url)"
+//    }
+//}

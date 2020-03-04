@@ -8,13 +8,15 @@
 
 import Foundation
 import SwiftyJSON
+import RealmSwift
 
-class User {
-    var id: String = ""
-    var FirstName: String = ""
-    var LastName: String = ""
-    var PhotoFriend: String = ""
-    init(json: JSON) {
+class User: Object {
+    @objc dynamic var id: String = ""
+    @objc dynamic var FirstName: String = ""
+    @objc dynamic var LastName: String = ""
+    @objc dynamic var PhotoFriend: String = ""
+    convenience init(json: JSON) {
+        self.init()
         self.id = json["id"].stringValue
         self.FirstName = json["first_name"].stringValue
         self.LastName = json["last_name"].stringValue
@@ -22,9 +24,10 @@ class User {
     }
 }
 
-// Заставим наш объект выводиться в консоль
-extension User: CustomStringConvertible {
-    var description: String {
-        return "\n \(FirstName) \(LastName): vk.com/id\(id)"
-    }
-}
+// У Realm свой дескриптор
+//// Заставим наш объект выводиться в консоль
+//extension User: CustomStringConvertible {
+//    var description: String {
+//        return "\n \(FirstName) \(LastName): vk.com/id\(id)"
+//    }
+//}
