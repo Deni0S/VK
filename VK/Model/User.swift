@@ -22,12 +22,7 @@ class User: Object {
         self.LastName = json["last_name"].stringValue
         self.PhotoFriend = json["photo_200_orig"].stringValue
     }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
-
-// У Realm свой дескриптор
-//// Заставим наш объект выводиться в консоль
-//extension User: CustomStringConvertible {
-//    var description: String {
-//        return "\n \(FirstName) \(LastName): vk.com/id\(id)"
-//    }
-//}

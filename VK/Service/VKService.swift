@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 enum VKServiceMethod {
     case getPhoto
@@ -61,7 +62,7 @@ class VKService {
     }
     
     // Фотографии
-    func getPhoto(id: String, complition: (([Photo]?, (Error?)) -> Void)? = nil) {
+    func getPhoto(id: String, complition: ((Error?) -> Void)? = nil) {
         // Добавим дополнительный параметр id пользователя
         additionalParametr = "owner_id=\(id)&"
         // Создать URL по частям
@@ -70,7 +71,7 @@ class VKService {
         AF.request(urlPath).responseData {responce in
             // Обработать ошибки
             if let error = responce.error {
-                complition?(nil, error)
+                complition?(error)
                 print(error)
             } else {
                 // SwiftyJSON cериализация
@@ -79,22 +80,38 @@ class VKService {
                     // SwiftyJSON Парсинг
                     let photo = json["response"]["items"].arrayValue.map { Photo(json: $0) }
                     print("\nФотографии:\n\(photo)")
+                    // Сохранить в Realm
+                    self.savePhotoData(photo)
                     // Передадим данные через замыкание
-                    complition?(photo, nil)
+                    complition?(nil)
                 }
             }
         }
     }
     
+    // Сохранить фото в Realm
+    func savePhotoData(_ vk: [Photo]) {
+        let realm = try! Realm()
+        let oldPhoto = realm.objects(Photo.self)
+        do {
+            try realm.write {
+                realm.delete(oldPhoto)
+                realm.add(vk, update: .all)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
     // Друзья
-    func getFriend(complition: (([User]?, (Error?)) -> Void)? = nil) {
+    func getFriend(complition: ((Error?) -> Void)? = nil) {
         // Создать URL по частям
         let urlPath = self.getURLpath(for: .getFriend)
         // Статический метод полчения ответа Alamofire
         AF.request(urlPath).responseData {responce in
             // Обработать ошибки
             if let error = responce.error {
-                complition?(nil, error)
+                complition?(error)
                 print(error)
             } else {
                 // SwiftyJSON cериализация
@@ -103,22 +120,39 @@ class VKService {
                     // SwiftyJSON Парсинг
                     let friend = json["response"]["items"].arrayValue.map { User(json: $0) }
                     print("\nДрузья:\n\(friend)")
+                    // Сохранить в Realm
+                    self.saveFriendData(friend)
                     // Передадим данные через замыкание
-                    complition?(friend, nil)
+                    complition?(nil)
                 }
             }
         }
     }
-        
+    
+    // Сохранить друзей в Realm
+    func saveFriendData(_ vk: [User]) {
+        let realm = try! Realm()
+        let oldFriend = realm.objects(User.self)
+        do {
+            try realm.write {
+                realm.delete(oldFriend)
+                realm.add(vk, update: .all)
+            }
+            
+        } catch {
+            print(error)
+        }
+    }
+    
     // Группы
-    func getGroup(complition: (([Group]?, (Error?)) -> Void)? = nil) {
+    func getGroup(complition: ((Error?) -> Void)? = nil) {
         // Создать URL по частям
         let urlPath = self.getURLpath(for: .getGroup)
         // Статический метод получения ответа Alamofire
         AF.request(urlPath).responseData {responce in
             // Обработать ошибки
             if let error = responce.error {
-                complition?(nil, error)
+                complition?(error)
                 print(error)
             } else {
                 // SwiftyJSON cериализация
@@ -126,10 +160,26 @@ class VKService {
                     print("\nJson Группы:\n", json)
                     let group = json["response"]["items"].arrayValue.map { Group(json: $0) }
                     print("\nГруппы:\n\(group)")
+                    // Сохранить в Realm
+                    self.saveGroupData(group)
                     // Передадим данные через замыкание
-                    complition?(group, nil)
+                    complition?(nil)
                 }
             }
+        }
+    }
+    
+    // Сохранить группы в Realm
+    func saveGroupData(_ vk: [Group]) {
+        let realm = try! Realm()
+        let oldGroup = realm.objects(Group.self)
+        do {
+            try realm.write {
+                realm.delete(oldGroup)
+                realm.add(vk, update: .all)
+            }
+        } catch {
+            print(error)
         }
     }
     

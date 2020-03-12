@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
@@ -27,17 +28,25 @@ class PhotoFriendVC: UICollectionViewController {
     // Загрузить данные
     func loadFriendData() {
         let service = VKService()
-        service.getPhoto(id: Session.instance.photoUserId) { photos, error in
+        service.getPhoto(id: Session.instance.photoUserId) { [weak self] error in
             if let error = error {
                 print(error)
                 return
             }
-            if let photos = photos {
-                self.photos = photos
-                self.collectionView?.reloadData()
-            }
+            // Загрузить данные из базы
+            self?.loadDataFromRealm()
         }
         Session.instance.photoUserId = ""
+    }
+    
+    // Загрузить данные из Realm
+    func loadDataFromRealm() {
+        let realm = try! Realm()
+        // Получить объект
+        let photos = realm.objects(Photo.self)
+        // Переделать results в массив
+        self.photos = Array(photos)
+        self.collectionView?.reloadData()
     }
 
 //    @objc private func likeOnTap(_ sender: String) {

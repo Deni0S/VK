@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupSearchVC: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
@@ -23,14 +24,14 @@ class GroupSearchVC: UITableViewController, UISearchBarDelegate {
     // MARK: - Search Bar Delegate
         
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        service.getGroupSearch(search: searchText) { groupsSearch, error in
+        service.getGroupSearch(search: searchText) { [weak self] groupsSearch, error in
             if let error = error {
                 print(error)
                 return
             }
             if let groupsSearch = groupsSearch {
-                self.groupsSearch = groupsSearch
-                self.tableView?.reloadData()
+                self?.groupsSearch = groupsSearch
+                self?.tableView?.reloadData()
             }
         }
     }

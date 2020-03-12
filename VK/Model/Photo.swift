@@ -18,15 +18,7 @@ class Photo: Object {
         self.url = json["sizes"][3]["url"].stringValue
         self.text = json["text"].stringValue
     }
+    override static func primaryKey() -> String? {
+        return "url"
+    }
 }
-
-// У Realm свой дескриптор
-//// Заставить наш объект выводиться в консоль
-//extension Photo: CustomStringConvertible {
-//    var description: String {
-//        if text != "" {
-//            return "\n\n\(text): \n  \(url)"
-//        }
-//        return "\n\nNo name: \n  \(url)"
-//    }
-//}

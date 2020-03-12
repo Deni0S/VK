@@ -235,18 +235,44 @@
 		924B0B1523F092C000F72996 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				924B0B1823F098E700F72996 /* NewsCell.swift */,
+				9280B202241AE00000D83594 /* Cell */,
 				924B0B1623F0981400F72996 /* NewsVC.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		9280B200241ADFD700D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929A32CF23D63E59006B43D6 /* FriendCell.swift */,
+				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9280B201241ADFEC00D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929A32D323D64CB4006B43D6 /* GroupCell.swift */,
+				929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9280B202241AE00000D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				924B0B1823F098E700F72996 /* NewsCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		929A32C723D63AC0006B43D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				929A32C823D63C18006B43D6 /* User.swift */,
-				929A32CA23D63C25006B43D6 /* Group.swift */,
 				929922FB240702FC00E6D4AF /* Photo.swift */,
+				929A32CA23D63C25006B43D6 /* Group.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,9 +280,8 @@
 		929A32CC23D63DD5006B43D6 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
-				929A32CF23D63E59006B43D6 /* FriendCell.swift */,
+				9280B200241ADFD700D83594 /* Cell */,
 				929A32CD23D63E00006B43D6 /* FriendVC.swift */,
-				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
 				92C011B823DF93880095C5CA /* PhotoFriendVC.swift */,
 			);
 			path = Friend;
@@ -265,9 +290,8 @@
 		929A32D123D64C7A006B43D6 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				929A32D323D64CB4006B43D6 /* GroupCell.swift */,
+				9280B201241ADFEC00D83594 /* Cell */,
 				929A32D523D64CE7006B43D6 /* GroupVC.swift */,
-				929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */,
 				929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */,
 			);
 			path = Group;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FriendVC: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchButton: UIBarButtonItem!
@@ -82,7 +83,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         setupTableHeader()
         // Загрузим данные
         loadFriendData()
-        // Установим действие кнопи поиска
+        // Установим действие кнопки поиска
         searchButton.target = self
         searchButton.action = #selector(searchButtonOnTap)
     }
@@ -94,19 +95,28 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     // Загрузить данные
     func loadFriendData() {
         let service = VKService()
-        service.getFriend() { friends, error in
+        service.getFriend() { [weak self] error in
             if let error = error {
                 print(error)
                 return
             }
-            if let friends = friends {
-                self.friends = friends
-                self.filterABC()
-                self.setupSearchFriends()
-                self.tableView?.reloadData()
-            }
+            // Загрузить данные из базы
+            self?.loadDataFromRealm()
         }
     }
+    
+    // Загрузить данные из Realm
+    func loadDataFromRealm() {
+        let realm = try! Realm()
+        // Получить объект
+        let friends = realm.objects(User.self)
+        // Переделать results в массив
+        self.friends = Array(friends)
+        self.filterABC()
+        self.setupSearchFriends()
+        self.tableView?.reloadData()
+    }
+
     
     // Рассортировать данные по алфавиту
     func filterABC() {

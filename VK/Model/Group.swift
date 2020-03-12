@@ -20,12 +20,7 @@ class Group: Object {
         self.Name = json["name"].stringValue
         self.PhotoGroup = json["photo_200"].stringValue
     }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
-
-// У Realm свой дескриптор
-//// Заставим наш объект выводиться в консоль
-//extension Group: CustomStringConvertible {
-//    var description: String {
-//        return "\n\n\(Name): \n\(PhotoGroup)\n,,,,,,,,,,,,,,,,,,,,,"
-//    }
-//}

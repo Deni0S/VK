@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupVC: UITableViewController {
     var groups: [Group] = []
@@ -21,16 +22,24 @@ class GroupVC: UITableViewController {
     // Загрузить данные
     func loadGroupData () {
         let service = VKService()
-        service.getGroup() { groups, error in
+        service.getGroup() { [weak self] error in
             if let error = error {
                 print(error)
                 return
             }
-            if let groups = groups {
-                self.groups = groups
-                self.tableView?.reloadData()
-            }
+            // Загрузить данные из базы
+            self?.loadDataFromRealm()
         }
+    }
+    
+    // Загрузить данные из Realm
+    func loadDataFromRealm() {
+        let realm = try! Realm()
+        // Получить объект
+        let groups = realm.objects(Group.self)
+        // Переделать results в массив
+        self.groups = Array(groups)
+        self.tableView?.reloadData()
     }
 
     // Создадим обратный переход при добавлении групп
