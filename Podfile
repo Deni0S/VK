@@ -10,6 +10,10 @@ target 'VK' do
   pod 'SwiftyJSON'
   pod 'Kingfisher'
   pod 'RealmSwift'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+  
   target 'VKTests' do
     inherit! :search_paths
     # Pods for testing

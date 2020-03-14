@@ -23,4 +23,12 @@ class Group: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
+    // Сохранить группы из поиска в Firestore
+    func toFirestore() -> [String: Any] {
+        return [
+            String("id") : id,
+            String("Name") : Name,
+            String("PhotoGroup") : PhotoGroup
+        ]
+    }
 }

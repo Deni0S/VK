@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import Firebase
 
 enum VKServiceMethod {
     case getPhoto
@@ -202,10 +203,26 @@ class VKService {
                     // SwiftyJSON Парсинг
                     let groupSearch = json["response"]["items"].arrayValue.map { Group(json: $0) }
                     print("\nПоиск групп:\n\(groupSearch)")
+                    // Сохраним группы в Firestore
+                    self.saveGroupSearchFirestore(groupSearch)
                     // Передадим данные через замыкание
                     complition?(groupSearch, nil)
                 }
             }
         }
     }
+    
+    // Сохранить группы в Firestore
+    func saveGroupSearchFirestore(_ vk: [Group]) {
+        let db = Firestore.firestore()
+        db.collection("id\(Session.instance.userid)").document("GroupSearch").setData(vk
+            .map { $0.toFirestore() }
+            .reduce([:]) { $0.merging($1) { (current, _) in current } }
+        ) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            } else { print("data saved") }
+        }
+    }
+
 }
