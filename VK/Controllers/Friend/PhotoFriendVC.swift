@@ -13,6 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class PhotoFriendVC: UICollectionViewController {
     var photos: [Photo] = []
+    var photoToken: NotificationToken?
     private var buttons: [UIButton] = []
 
     override func viewDidLoad() {
@@ -39,14 +40,37 @@ class PhotoFriendVC: UICollectionViewController {
         Session.instance.photoUserId = ""
     }
     
-    // Загрузить данные из Realm
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
         let realm = try! Realm()
-        // Получить объект
-        let photos = realm.objects(Photo.self)
-        // Переделать results в массив
-        self.photos = Array(photos)
-        self.collectionView?.reloadData()
+        // Получить объект и отсортировать по алфовиту
+        let photos = realm.objects(Photo.self).sorted(byKeyPath: "text")
+        // Подписаться на изменения Realm Notifocations
+        photoToken = photos.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                // Переделать results  в массив
+                self.photos = Array(results)
+                // Перезагрузить коллекцию
+                self.collectionView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.photos = Array(results)
+                // Обновить коллекцию и узнать когда завершиться обновление
+                self.collectionView?.performBatchUpdates({
+                    // Добавились секции
+                    self.collectionView?.insertItems(at: insertions.map({ IndexPath(item: $0, section: 0) }) )
+                    // Удалились секции
+                    self.collectionView?.deleteItems(at: deletions.map({ IndexPath(item: $0, section: 0) }) )
+                    // Изменились секции
+                    self.collectionView?.reloadItems(at: modifications.map({ IndexPath(item: $0, section: 0) }) )
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 
 //    @objc private func likeOnTap(_ sender: String) {

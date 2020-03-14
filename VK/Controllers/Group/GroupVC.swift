@@ -11,6 +11,7 @@ import RealmSwift
 
 class GroupVC: UITableViewController {
     var groups: [Group] = []
+    var groupToken: NotificationToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +33,37 @@ class GroupVC: UITableViewController {
         }
     }
     
-    // Загрузить данные из Realm
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
         let realm = try! Realm()
-        // Получить объект
-        let groups = realm.objects(Group.self)
-        // Переделать results в массив
-        self.groups = Array(groups)
-        self.tableView?.reloadData()
+        // Получить объект и отсортировать по имени
+        let groups = realm.objects(Group.self).sorted(byKeyPath: "Name")
+        // Подписаться на изменения Realm Notifocations
+        groupToken = groups.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                // Переделать results  в массив
+                self.groups = Array(results)
+                // Перезагрузить коллекцию
+                self.tableView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.groups = Array(results)
+                // Обновить коллекцию и узнать когда завершиться обновление
+                self.tableView?.performBatchUpdates({
+                    // Добавились строки
+                    self.tableView?.insertRows(at: insertions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Удалились строки
+                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Изменились строки
+                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 
     // Создадим обратный переход при добавлении групп
@@ -53,12 +77,12 @@ class GroupVC: UITableViewController {
                 // Получаем группу по инедексу
                 let groupSearch = groupSearchVC.groupsSearch[indexPath.row]
                 // Проверяем что такой группы нет в списке
-//                if !groups.contains(groupSearch) {
+                if !groups.contains(groupSearch) {
                     // Добавляем группу в список
                     groups.append(groupSearch)
                     // Обновляем таблицу
                     tableView.reloadData()
-//                }
+                }
             }
         }
     }
@@ -92,13 +116,13 @@ class GroupVC: UITableViewController {
     }
     */
 
-    // Override to support editing the table view.
+    // Override to support editing the table view
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // Если была нажата кнопка удалить
         if editingStyle == .delete {
             // Удаляем группу из массива
             groups.remove(at: indexPath.row)
-            // И удаляем строку из массива
+            // И удаляем строку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
         //} else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

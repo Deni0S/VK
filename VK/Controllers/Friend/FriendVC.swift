@@ -13,6 +13,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchButton: UIBarButtonItem!
     private var searchBar = UISearchBar()
     var friends: [User] = []
+    var friendToken: NotificationToken?
     var searchFriends: [User] = [User]()
     var friends0: [User] = []
     var friends1: [User] = []
@@ -105,19 +106,43 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         }
     }
     
-    // Загрузить данные из Realm
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
         let realm = try! Realm()
-        // Получить объект
-        let friends = realm.objects(User.self)
-        // Переделать results в массив
-        self.friends = Array(friends)
-        self.filterABC()
-        self.setupSearchFriends()
-        self.tableView?.reloadData()
+        // Получить объект и отсортировать по имени
+        let friends = realm.objects(User.self).sorted(byKeyPath: "FirstName")
+        // Подписаться на изменения Realm Notifocations
+        friendToken = friends.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                // Переделать results  в массив
+                self.friends = Array(results)
+                self.filterABC()
+                self.setupSearchFriends()
+                // Перезагрузить коллекцию
+                self.tableView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.friends = Array(results)
+                self.filterABC()
+                self.setupSearchFriends()
+                // Обновить коллекцию и узнать когда завершиться обновление
+                self.tableView?.performBatchUpdates({
+                    // Добавились строки
+                    self.tableView?.insertRows(at: insertions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Удалились строки
+                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Изменились строки
+                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 
-    
     // Рассортировать данные по алфавиту
     func filterABC() {
         friends0 = friends.filter { $0.LastName.first == "A" || $0.LastName.first == "A"}
@@ -322,7 +347,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         let view = UIView()
         view.backgroundColor = .gray
         view.alpha = 0.5
-        var lable = UILabel(frame: CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width, height: 24))
+        let lable = UILabel(frame: CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width, height: 24))
         switch section {
         case 0:
             lable.text = "А"
@@ -469,7 +494,72 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Session.instance.photoUserId = friends[indexPath.row].id
+        switch indexPath.section {
+        case 0:
+            Session.instance.photoUserId = currentFriends0[indexPath.row].id
+        case 1:
+            Session.instance.photoUserId = currentFriends1[indexPath.row].id
+        case 2:
+            Session.instance.photoUserId = currentFriends2[indexPath.row].id
+        case 3:
+            Session.instance.photoUserId = currentFriends3[indexPath.row].id
+        case 4:
+            Session.instance.photoUserId = currentFriends4[indexPath.row].id
+        case 5:
+            Session.instance.photoUserId = currentFriends5[indexPath.row].id
+        case 6:
+            Session.instance.photoUserId = currentFriends6[indexPath.row].id
+        case 7:
+            Session.instance.photoUserId = currentFriends7[indexPath.row].id
+        case 8:
+            Session.instance.photoUserId = currentFriends8[indexPath.row].id
+        case 9:
+            Session.instance.photoUserId = currentFriends9[indexPath.row].id
+        case 10:
+            Session.instance.photoUserId = currentFriends10[indexPath.row].id
+        case 11:
+            Session.instance.photoUserId = currentFriends11[indexPath.row].id
+        case 12:
+            Session.instance.photoUserId = currentFriends12[indexPath.row].id
+        case 13:
+            Session.instance.photoUserId = currentFriends13[indexPath.row].id
+        case 14:
+            Session.instance.photoUserId = currentFriends14[indexPath.row].id
+        case 15:
+            Session.instance.photoUserId = currentFriends15[indexPath.row].id
+        case 16:
+            Session.instance.photoUserId = currentFriends16[indexPath.row].id
+        case 17:
+            Session.instance.photoUserId = currentFriends17[indexPath.row].id
+        case 18:
+            Session.instance.photoUserId = currentFriends18[indexPath.row].id
+        case 19:
+            Session.instance.photoUserId = currentFriends19[indexPath.row].id
+        case 20:
+            Session.instance.photoUserId = currentFriends20[indexPath.row].id
+        case 21:
+            Session.instance.photoUserId = currentFriends21[indexPath.row].id
+        case 22:
+            Session.instance.photoUserId = currentFriends22[indexPath.row].id
+        case 23:
+            Session.instance.photoUserId = currentFriends23[indexPath.row].id
+        case 24:
+            Session.instance.photoUserId = currentFriends24[indexPath.row].id
+        case 25:
+            Session.instance.photoUserId = currentFriends25[indexPath.row].id
+        case 26:
+            Session.instance.photoUserId = currentFriends26[indexPath.row].id
+        case 27:
+            Session.instance.photoUserId = currentFriends27[indexPath.row].id
+        case 28:
+            Session.instance.photoUserId = currentFriends28[indexPath.row].id
+        case 29:
+            Session.instance.photoUserId = currentFriends29[indexPath.row].id
+        case 30:
+            Session.instance.photoUserId = currentFriends30[indexPath.row].id
+        default:
+            Session.instance.photoUserId = friends[indexPath.row].id
+        }
     }
     
     /*
