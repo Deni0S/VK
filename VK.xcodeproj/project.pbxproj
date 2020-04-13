@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922488F4242006920047E589 /* FullPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922488F3242006920047E589 /* FullPhotoVC.swift */; };
 		922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF223CD14EF00908C68 /* AppDelegate.swift */; };
 		922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF423CD14EF00908C68 /* SceneDelegate.swift */; };
 		922C6FFA23CD14EF00908C68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922C6FF823CD14EF00908C68 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		922488F3242006920047E589 /* FullPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoVC.swift; sourceTree = "<group>"; };
 		922C6FEF23CD14EF00908C68 /* VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C6FF223CD14EF00908C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		922C6FF423CD14EF00908C68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				929A32CD23D63E00006B43D6 /* FriendVC.swift */,
 				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
 				92C011B823DF93880095C5CA /* PhotoFriendVC.swift */,
+				922488F3242006920047E589 /* FullPhotoVC.swift */,
 			);
 			path = Friend;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 				92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */,
 				929A32D023D63E59006B43D6 /* FriendCell.swift in Sources */,
 				92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */,
+				922488F4242006920047E589 /* FullPhotoVC.swift in Sources */,
 				924B0B1923F098E700F72996 /* NewsCell.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
 				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,

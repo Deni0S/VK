@@ -44,6 +44,15 @@ class PhotoFriendVC: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let fullPhotoVC = segue.destination as? FullPhotoVC, let indexPath = collectionView.indexPathsForSelectedItems?.first {
+            fullPhotoVC.photos = photos
+            fullPhotoVC.indexPath = indexPath.row
+        }
+        
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -94,6 +103,6 @@ class PhotoFriendVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
     }
-    */
+     */
 
 }
