@@ -55,12 +55,13 @@ class FullPhotoVC: UIViewController {
             // Считать перемещение распознователя внутри View нахождения
             let translation = recognizer.translation(in: self.view)
             // Установить значение перемещения деленное на 100
-            interactivAnimator.fractionComplete = translation.x / 100
+            interactivAnimator.fractionComplete = abs(translation.x) / 100
         case .ended:
             // Разделить жесты смахивания на правой и левой половине экрана
             let isLeftScreen = recognizer.location(in: view).x < UIScreen.main.bounds.width / 2
             // Продолжить анимацию с текущего места или отменить в случае обратного свайпа
             let isCancelSwipe = isLeftScreen ? recognizer.translation(in: view).x > 10 : recognizer.translation(in: view).x < -10
+            print(recognizer.translation(in: view).x)
             if isCancelSwipe {
                 interactivAnimator.continueAnimation(withTimingParameters: nil, durationFactor: 0)
             } else {
