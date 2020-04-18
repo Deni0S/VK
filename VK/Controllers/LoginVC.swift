@@ -159,3 +159,20 @@ class LoginVC: UIViewController {
         self.scrollView?.endEditing(true)
     }
 }
+
+// MARK: - Анимация перехода
+
+extension LoginVC: UIViewControllerTransitioningDelegate {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let viewController = segue.destination
+        viewController.transitioningDelegate = self
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionAnimation(isPresented: true, typeController: "Login")
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionAnimation(isPresented: false, typeController: "Login")
+    }
+}

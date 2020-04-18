@@ -20,6 +20,9 @@
 		922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Layer.swift */; };
 		924B0B1723F0981400F72996 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1623F0981400F72996 /* NewsVC.swift */; };
 		924B0B1923F098E700F72996 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1823F098E700F72996 /* NewsCell.swift */; };
+		928543AF2445EAAE00DA3123 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */; };
+		928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543B02446282100DA3123 /* TransitionInteractive.swift */; };
+		9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */; };
 		929A32C923D63C18006B43D6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32C823D63C18006B43D6 /* User.swift */; };
 		929A32CB23D63C25006B43D6 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CA23D63C25006B43D6 /* Group.swift */; };
 		929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32CD23D63E00006B43D6 /* FriendVC.swift */; };
@@ -70,6 +73,9 @@
 		922C702E23CD330600908C68 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		924B0B1623F0981400F72996 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		924B0B1823F098E700F72996 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
+		928543B02446282100DA3123 /* TransitionInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractive.swift; sourceTree = "<group>"; };
+		9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractionNavigationControllerViewController.swift; sourceTree = "<group>"; };
 		929A32C823D63C18006B43D6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		929A32CA23D63C25006B43D6 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		929A32CD23D63E00006B43D6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
@@ -176,6 +182,9 @@
 			isa = PBXGroup;
 			children = (
 				922C702923CD1CD100908C68 /* LoginVC.swift */,
+				928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */,
+				928543B02446282100DA3123 /* TransitionInteractive.swift */,
+				9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */,
 				929A32CC23D63DD5006B43D6 /* Friend */,
 				929A32D123D64C7A006B43D6 /* Group */,
 				929A32D723D64D69006B43D6 /* GroupSearch */,
@@ -379,8 +388,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				928543AF2445EAAE00DA3123 /* TransitionAnimation.swift in Sources */,
 				929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */,
 				929A32CB23D63C25006B43D6 /* Group.swift in Sources */,
+				928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */,
 				922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */,
 				92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,
@@ -393,6 +404,7 @@
 				924B0B1923F098E700F72996 /* NewsCell.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
 				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,
+				9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */,
 				922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */,
 				929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */,
 				922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */,
