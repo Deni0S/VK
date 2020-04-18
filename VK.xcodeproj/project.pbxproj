@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DA85CFE95B329AED2979CA6 /* Pods_VK_VKUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C0FAF7DA31AE808563E29E /* Pods_VK_VKUITests.framework */; };
+		8929015528F50D13F39BC944 /* Pods_VKTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D2213022AC56E1FFC08EDDC /* Pods_VKTests.framework */; };
 		922488F4242006920047E589 /* FullPhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922488F3242006920047E589 /* FullPhotoVC.swift */; };
 		922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF223CD14EF00908C68 /* AppDelegate.swift */; };
 		922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C6FF423CD14EF00908C68 /* SceneDelegate.swift */; };
@@ -20,6 +22,8 @@
 		922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Layer.swift */; };
 		924B0B1723F0981400F72996 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1623F0981400F72996 /* NewsVC.swift */; };
 		924B0B1923F098E700F72996 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1823F098E700F72996 /* NewsCell.swift */; };
+		9280B204241D165800D83594 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9280B203241D165800D83594 /* GoogleService-Info.plist */; };
+		929922FC240702FC00E6D4AF /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929922FB240702FC00E6D4AF /* Photo.swift */; };
 		928543AF2445EAAE00DA3123 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */; };
 		928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543B02446282100DA3123 /* TransitionInteractive.swift */; };
 		9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */; };
@@ -31,9 +35,14 @@
 		929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D523D64CE7006B43D6 /* GroupVC.swift */; };
 		929A32D923D64D8A006B43D6 /* GroupSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */; };
 		929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */; };
+		92A8156723FF29FC00C56932 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8156623FF29FC00C56932 /* Session.swift */; };
 		92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */; };
 		92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B823DF93880095C5CA /* PhotoFriendVC.swift */; };
 		92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */; };
+		92F39340240458B8005A3AC4 /* VKLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3933F240458B8005A3AC4 /* VKLoginVC.swift */; };
+		92F3934324045F21005A3AC4 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F3934224045F20005A3AC4 /* WebKit.framework */; };
+		92F39345240465F9005A3AC4 /* VKService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F39344240465F9005A3AC4 /* VKService.swift */; };
+		D0FE727B2109F8E1D76E691F /* Pods_VK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83063DC9FF281DD36AA4929B /* Pods_VK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +63,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B79FD1179105A2C082B1895 /* Pods-VK-VKUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK-VKUITests.debug.xcconfig"; path = "Target Support Files/Pods-VK-VKUITests/Pods-VK-VKUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		0D2213022AC56E1FFC08EDDC /* Pods_VKTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E7186243871C6398525E1F6 /* Pods-VKTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKTests.release.xcconfig"; path = "Target Support Files/Pods-VKTests/Pods-VKTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E2FE312D58A3DF540A02228 /* Pods-VK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK.debug.xcconfig"; path = "Target Support Files/Pods-VK/Pods-VK.debug.xcconfig"; sourceTree = "<group>"; };
+		83063DC9FF281DD36AA4929B /* Pods_VK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		922488F3242006920047E589 /* FullPhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullPhotoVC.swift; sourceTree = "<group>"; };
 		922C6FEF23CD14EF00908C68 /* VK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		922C6FF223CD14EF00908C68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +87,8 @@
 		922C702E23CD330600908C68 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
 		924B0B1623F0981400F72996 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		924B0B1823F098E700F72996 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		9280B203241D165800D83594 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		929922FB240702FC00E6D4AF /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
 		928543B02446282100DA3123 /* TransitionInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractive.swift; sourceTree = "<group>"; };
 		9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInteractionNavigationControllerViewController.swift; sourceTree = "<group>"; };
@@ -84,9 +100,17 @@
 		929A32D523D64CE7006B43D6 /* GroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupVC.swift; sourceTree = "<group>"; };
 		929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchVC.swift; sourceTree = "<group>"; };
 		929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchCell.swift; sourceTree = "<group>"; };
+		92A8156623FF29FC00C56932 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCustom.swift; sourceTree = "<group>"; };
 		92C011B823DF93880095C5CA /* PhotoFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendVC.swift; sourceTree = "<group>"; };
 		92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendCell.swift; sourceTree = "<group>"; };
+		92F3933F240458B8005A3AC4 /* VKLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKLoginVC.swift; sourceTree = "<group>"; };
+		92F3934224045F20005A3AC4 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		92F39344240465F9005A3AC4 /* VKService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKService.swift; sourceTree = "<group>"; };
+		B0A4247B88792A88516B4168 /* Pods-VK-VKUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK-VKUITests.release.xcconfig"; path = "Target Support Files/Pods-VK-VKUITests/Pods-VK-VKUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C79863FFC923196A74D25D03 /* Pods-VK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VK.release.xcconfig"; path = "Target Support Files/Pods-VK/Pods-VK.release.xcconfig"; sourceTree = "<group>"; };
+		DCAFF4E512236B208581E650 /* Pods-VKTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKTests.debug.xcconfig"; path = "Target Support Files/Pods-VKTests/Pods-VKTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4C0FAF7DA31AE808563E29E /* Pods_VK_VKUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VK_VKUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +118,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F3934324045F21005A3AC4 /* WebKit.framework in Frameworks */,
+				D0FE727B2109F8E1D76E691F /* Pods_VK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +127,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8929015528F50D13F39BC944 /* Pods_VKTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,20 +135,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0DA85CFE95B329AED2979CA6 /* Pods_VK_VKUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		73D0A2C132848A79763B3115 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E2FE312D58A3DF540A02228 /* Pods-VK.debug.xcconfig */,
+				C79863FFC923196A74D25D03 /* Pods-VK.release.xcconfig */,
+				0B79FD1179105A2C082B1895 /* Pods-VK-VKUITests.debug.xcconfig */,
+				B0A4247B88792A88516B4168 /* Pods-VK-VKUITests.release.xcconfig */,
+				DCAFF4E512236B208581E650 /* Pods-VKTests.debug.xcconfig */,
+				0E7186243871C6398525E1F6 /* Pods-VKTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		922C6FE623CD14EF00908C68 = {
 			isa = PBXGroup;
 			children = (
 				922C6FF123CD14EF00908C68 /* VK */,
-				922C702B23CD32C000908C68 /* Helpers */,
 				922C700B23CD14EF00908C68 /* VKTests */,
 				922C701623CD14EF00908C68 /* VKUITests */,
 				922C6FF023CD14EF00908C68 /* Products */,
+				92F3934124045F20005A3AC4 /* Frameworks */,
+				73D0A2C132848A79763B3115 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -140,12 +182,15 @@
 			children = (
 				922C6FF223CD14EF00908C68 /* AppDelegate.swift */,
 				922C6FF423CD14EF00908C68 /* SceneDelegate.swift */,
+				922C702B23CD32C000908C68 /* Helpers */,
 				92C011B323DDD3FF0095C5CA /* UIElements */,
 				922C702523CD167F00908C68 /* View */,
 				922C702623CD169900908C68 /* Controllers */,
 				929A32C723D63AC0006B43D6 /* Model */,
+				92A8156523FF29D500C56932 /* Service */,
 				922C6FFE23CD14EF00908C68 /* Assets.xcassets */,
 				922C700323CD14EF00908C68 /* Info.plist */,
+				9280B203241D165800D83594 /* GoogleService-Info.plist */,
 				922C6FFB23CD14EF00908C68 /* VK.xcdatamodeld */,
 			);
 			path = VK;
@@ -182,12 +227,12 @@
 			isa = PBXGroup;
 			children = (
 				922C702923CD1CD100908C68 /* LoginVC.swift */,
+				92F3933F240458B8005A3AC4 /* VKLoginVC.swift */,
 				928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */,
 				928543B02446282100DA3123 /* TransitionInteractive.swift */,
 				9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */,
 				929A32CC23D63DD5006B43D6 /* Friend */,
 				929A32D123D64C7A006B43D6 /* Group */,
-				929A32D723D64D69006B43D6 /* GroupSearch */,
 				924B0B1523F092C000F72996 /* News */,
 			);
 			path = Controllers;
@@ -204,16 +249,43 @@
 		924B0B1523F092C000F72996 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				924B0B1823F098E700F72996 /* NewsCell.swift */,
+				9280B202241AE00000D83594 /* Cell */,
 				924B0B1623F0981400F72996 /* NewsVC.swift */,
 			);
 			path = News;
+			sourceTree = "<group>";
+		};
+		9280B200241ADFD700D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929A32CF23D63E59006B43D6 /* FriendCell.swift */,
+				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9280B201241ADFEC00D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				929A32D323D64CB4006B43D6 /* GroupCell.swift */,
+				929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		9280B202241AE00000D83594 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				924B0B1823F098E700F72996 /* NewsCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		929A32C723D63AC0006B43D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				929A32C823D63C18006B43D6 /* User.swift */,
+				929922FB240702FC00E6D4AF /* Photo.swift */,
 				929A32CA23D63C25006B43D6 /* Group.swift */,
 			);
 			path = Model;
@@ -222,9 +294,8 @@
 		929A32CC23D63DD5006B43D6 /* Friend */ = {
 			isa = PBXGroup;
 			children = (
-				929A32CF23D63E59006B43D6 /* FriendCell.swift */,
+				9280B200241ADFD700D83594 /* Cell */,
 				929A32CD23D63E00006B43D6 /* FriendVC.swift */,
-				92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */,
 				92C011B823DF93880095C5CA /* PhotoFriendVC.swift */,
 				922488F3242006920047E589 /* FullPhotoVC.swift */,
 			);
@@ -234,19 +305,20 @@
 		929A32D123D64C7A006B43D6 /* Group */ = {
 			isa = PBXGroup;
 			children = (
-				929A32D323D64CB4006B43D6 /* GroupCell.swift */,
+				9280B201241ADFEC00D83594 /* Cell */,
 				929A32D523D64CE7006B43D6 /* GroupVC.swift */,
+				929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */,
 			);
 			path = Group;
 			sourceTree = "<group>";
 		};
-		929A32D723D64D69006B43D6 /* GroupSearch */ = {
+		92A8156523FF29D500C56932 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				929A32DA23D64DC0006B43D6 /* GroupSearchCell.swift */,
-				929A32D823D64D8A006B43D6 /* GroupSearchVC.swift */,
+				92F39344240465F9005A3AC4 /* VKService.swift */,
+				92A8156623FF29FC00C56932 /* Session.swift */,
 			);
-			path = GroupSearch;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		92C011B323DDD3FF0095C5CA /* UIElements */ = {
@@ -257,6 +329,17 @@
 			path = UIElements;
 			sourceTree = "<group>";
 		};
+		92F3934124045F20005A3AC4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92F3934224045F20005A3AC4 /* WebKit.framework */,
+				83063DC9FF281DD36AA4929B /* Pods_VK.framework */,
+				E4C0FAF7DA31AE808563E29E /* Pods_VK_VKUITests.framework */,
+				0D2213022AC56E1FFC08EDDC /* Pods_VKTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,9 +347,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 922C701C23CD14EF00908C68 /* Build configuration list for PBXNativeTarget "VK" */;
 			buildPhases = (
+				07852B0C1E8054454B7B1801 /* [CP] Check Pods Manifest.lock */,
 				922C6FEB23CD14EF00908C68 /* Sources */,
 				922C6FEC23CD14EF00908C68 /* Frameworks */,
 				922C6FED23CD14EF00908C68 /* Resources */,
+				D96AA9825A5A32BD0055CC78 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,6 +366,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 922C701F23CD14EF00908C68 /* Build configuration list for PBXNativeTarget "VKTests" */;
 			buildPhases = (
+				C98DDC82B525A3449E2E1A25 /* [CP] Check Pods Manifest.lock */,
 				922C700423CD14EF00908C68 /* Sources */,
 				922C700523CD14EF00908C68 /* Frameworks */,
 				922C700623CD14EF00908C68 /* Resources */,
@@ -299,9 +385,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 922C702223CD14EF00908C68 /* Build configuration list for PBXNativeTarget "VKUITests" */;
 			buildPhases = (
+				7A78D6762518A89C9777F378 /* [CP] Check Pods Manifest.lock */,
 				922C700F23CD14EF00908C68 /* Sources */,
 				922C701023CD14EF00908C68 /* Frameworks */,
 				922C701123CD14EF00908C68 /* Resources */,
+				831B4C44EBA3BB1689CB8B8A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -362,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922C700223CD14EF00908C68 /* LaunchScreen.storyboard in Resources */,
+				9280B204241D165800D83594 /* GoogleService-Info.plist in Resources */,
 				922C6FFF23CD14EF00908C68 /* Assets.xcassets in Resources */,
 				922C6FFA23CD14EF00908C68 /* Main.storyboard in Resources */,
 			);
@@ -383,6 +472,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		07852B0C1E8054454B7B1801 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A78D6762518A89C9777F378 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VK-VKUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		831B4C44EBA3BB1689CB8B8A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK-VKUITests/Pods-VK-VKUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK-VKUITests/Pods-VK-VKUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VK-VKUITests/Pods-VK-VKUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C98DDC82B525A3449E2E1A25 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VKTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D96AA9825A5A32BD0055CC78 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK/Pods-VK-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-VK/Pods-VK-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-VK/Pods-VK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		922C6FEB23CD14EF00908C68 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -395,18 +587,22 @@
 				922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */,
 				92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,
+				92F39345240465F9005A3AC4 /* VKService.swift in Sources */,
 				929A32C923D63C18006B43D6 /* User.swift in Sources */,
 				929A32D923D64D8A006B43D6 /* GroupSearchVC.swift in Sources */,
 				92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */,
 				929A32D023D63E59006B43D6 /* FriendCell.swift in Sources */,
+				92F39340240458B8005A3AC4 /* VKLoginVC.swift in Sources */,
 				92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */,
 				922488F4242006920047E589 /* FullPhotoVC.swift in Sources */,
 				924B0B1923F098E700F72996 /* NewsCell.swift in Sources */,
+				92A8156723FF29FC00C56932 /* Session.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
 				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,
 				9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */,
 				922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */,
 				929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */,
+				929922FC240702FC00E6D4AF /* Photo.swift in Sources */,
 				922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */,
 				922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */,
 				924B0B1723F0981400F72996 /* NewsVC.swift in Sources */,
@@ -580,6 +776,7 @@
 		};
 		922C701D23CD14EF00908C68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E2FE312D58A3DF540A02228 /* Pods-VK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -598,6 +795,7 @@
 		};
 		922C701E23CD14EF00908C68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C79863FFC923196A74D25D03 /* Pods-VK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -616,6 +814,7 @@
 		};
 		922C702023CD14EF00908C68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DCAFF4E512236B208581E650 /* Pods-VKTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -638,6 +837,7 @@
 		};
 		922C702123CD14EF00908C68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E7186243871C6398525E1F6 /* Pods-VKTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -660,6 +860,7 @@
 		};
 		922C702323CD14EF00908C68 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0B79FD1179105A2C082B1895 /* Pods-VK-VKUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -680,6 +881,7 @@
 		};
 		922C702423CD14EF00908C68 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0A4247B88792A88516B4168 /* Pods-VK-VKUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

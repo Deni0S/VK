@@ -38,6 +38,8 @@ class LoginVC: UIViewController {
         // Проверяем верны ли они
         if login == "admin" && password == "admin" {
             print("Успешная авторизация")
+            // Сохранить логин пользователя в singleton
+            Session.instance.userid = login
         } else {
             print("Ошибка в Логине(\(loginTextInput.text!)) или Пароле(\(passwordTextInput.text!))")
         }

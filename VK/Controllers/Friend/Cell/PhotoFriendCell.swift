@@ -9,12 +9,18 @@
 import UIKit
 
 class PhotoFriendCell: UICollectionViewCell {
+    @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     var likeCount: Int = 0
     var timeDuration = 0.5
     
-    func setupCell() {
+    // Заполнить ячейку полученными данными и действиями
+    func fillCell(_ photo: Photo) {
+        if let PhotoImage = URL(string: "\(photo.url)") {
+            photoImageView.kf.setImage(with: PhotoImage)
+        }
+        likeLabel?.text = "\(likeCount)"
         likeButton.addTarget(self, action: #selector(likeOnTap), for: .touchDown)
     }
     

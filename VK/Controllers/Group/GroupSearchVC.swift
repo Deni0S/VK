@@ -7,19 +7,35 @@
 //
 
 import UIKit
+import RealmSwift
 
-class GroupSearchVC: UITableViewController {
-    var groupsSearch = [
-        "Подводная охота",
-        "Музыка в дорогу",
-        "Места для зимнего катания"
-    ]
+class GroupSearchVC: UITableViewController, UISearchBarDelegate {
+    @IBOutlet weak var searchBar: UISearchBar!
+    var groupsSearch: [Group] = []
+    let service = VKService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        searchBar.placeholder = "начните поиск групп на английском"
+        searchBar.delegate = self
     }
 
+    // MARK: - Search Bar Delegate
+        
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        service.getGroupSearch(search: searchText) { [weak self] groupsSearch, error in
+            if let error = error {
+                print(error)
+                return
+            }
+            if let groupsSearch = groupsSearch {
+                self?.groupsSearch = groupsSearch
+                self?.tableView?.reloadData()
+            }
+        }
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,8 +52,8 @@ class GroupSearchVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupSearchCell", for: indexPath) as! GroupSearchCell
         // Получаем имя группы для конкретной строки
         let groupSearch = groupsSearch[indexPath.row]
-        // Устанавливаем имя в надпись ячейки
-        cell.groupSearchName?.text = groupSearch
+        // Заполнить ячейку полученными данными и действиями
+        cell.fillCell(groupSearch)
         return cell
     }
     
@@ -85,5 +101,5 @@ class GroupSearchVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
+
 }

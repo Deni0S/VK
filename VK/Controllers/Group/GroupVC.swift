@@ -7,16 +7,66 @@
 //
 
 import UIKit
+import RealmSwift
 
 class GroupVC: UITableViewController {
-    var groups = ["Дом"]
+    var groups: [Group] = []
+    var groupToken: NotificationToken?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        // Загрузим данные
+        loadGroupData()
+    }
+    
+    // Загрузить данные
+    func loadGroupData () {
+        let service = VKService()
+        service.getGroup() { [weak self] error in
+            if let error = error {
+                print(error)
+                return
+            }
+            // Загрузить данные из базы
+            self?.loadDataFromRealm()
+        }
+    }
+    
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
+    func loadDataFromRealm() {
+        let realm = try! Realm()
+        // Получить объект и отсортировать по имени
+        let groups = realm.objects(Group.self).sorted(byKeyPath: "Name")
+        // Подписаться на изменения Realm Notifocations
+        groupToken = groups.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                // Переделать results  в массив
+                self.groups = Array(results)
+                // Перезагрузить коллекцию
+                self.tableView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.groups = Array(results)
+                // Обновить коллекцию и узнать когда завершиться обновление
+                self.tableView?.performBatchUpdates({
+                    // Добавились строки
+                    self.tableView?.insertRows(at: insertions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Удалились строки
+                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Изменились строки
+                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 
-    // Создадим обратны переход при добавлении групп
+    // Создадим обратный переход при добавлении групп
     @IBAction func addGroup(segue: UIStoryboardSegue) {
         // Проверим тот ли переход по идентификатору
         if segue.identifier == "addGroup" {
@@ -53,9 +103,8 @@ class GroupVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupCell", for: indexPath) as! GroupCell
         // Получаем имя группы для конкретной строки
         let group = groups[indexPath.row]
-        // Устанавливаем имя в надпись ячейки
-        cell.groupName?.text = group
-        cell.setupCell()
+        // Заполнить ячейку полученными данными и действиями
+        cell.fillCell(group)
         return cell
     }
     
@@ -67,13 +116,13 @@ class GroupVC: UITableViewController {
     }
     */
 
-    // Override to support editing the table view.
+    // Override to support editing the table view
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         // Если была нажата кнопка удалить
         if editingStyle == .delete {
             // Удаляем группу из массива
             groups.remove(at: indexPath.row)
-            // И удаляем строку из массива
+            // И удаляем строку из таблицы
             tableView.deleteRows(at: [indexPath], with: .fade)
         //} else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

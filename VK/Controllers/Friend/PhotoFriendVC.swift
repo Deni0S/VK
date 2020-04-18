@@ -7,28 +7,70 @@
 //
 
 import UIKit
+import RealmSwift
 
 private let reuseIdentifier = "Cell"
 
 class PhotoFriendVC: UICollectionViewController {
-    var photos = [
-        "person.fill",
-        "person.fill",
-        "person.fill",
-        "person.fill"
-    ]
+    var photos: [Photo] = []
+    var photoToken: NotificationToken?
     private var buttons: [UIButton] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        // Загрузим данные
+        loadFriendData()
+    }
+    
+    // Загрузить данные
+    func loadFriendData() {
+        let service = VKService()
+        service.getPhoto(id: Session.instance.photoUserId) { [weak self] error in
+            if let error = error {
+                print(error)
+                return
+            }
+            // Загрузить данные из базы
+            self?.loadDataFromRealm()
+        }
+        Session.instance.photoUserId = ""
+    }
+    
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
+    func loadDataFromRealm() {
+        let realm = try! Realm()
+        // Получить объект и отсортировать по алфовиту
+        let photos = realm.objects(Photo.self).sorted(byKeyPath: "text")
+        // Подписаться на изменения Realm Notifocations
+        photoToken = photos.observe({ changes in
+            switch changes {
+            case .initial(let results):
+                print(results)
+                // Переделать results  в массив
+                self.photos = Array(results)
+                // Перезагрузить коллекцию
+                self.collectionView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.photos = Array(results)
+                // Обновить коллекцию и узнать когда завершиться обновление
+                self.collectionView?.performBatchUpdates({
+                    // Добавились секции
+                    self.collectionView?.insertItems(at: insertions.map({ IndexPath(item: $0, section: 0) }) )
+                    // Удалились секции
+                    self.collectionView?.deleteItems(at: deletions.map({ IndexPath(item: $0, section: 0) }) )
+                    // Изменились секции
+                    self.collectionView?.reloadItems(at: modifications.map({ IndexPath(item: $0, section: 0) }) )
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
     }
 
 //    @objc private func likeOnTap(_ sender: String) {
@@ -69,8 +111,8 @@ class PhotoFriendVC: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFriendCell", for: indexPath) as! PhotoFriendCell
-        cell.likeLabel?.text = "\(cell.likeCount)"
-        cell.setupCell()
+        // Заполнить ячейку полученными данными и действиями
+        cell.fillCell(photos[indexPath.row])
         return cell
     }
 

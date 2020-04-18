@@ -7,7 +7,28 @@
 //
 
 import Foundation
+import SwiftyJSON
+import RealmSwift
 
-class Group {
-    
+class Group: Object {
+    @objc dynamic var id: String = ""
+    @objc dynamic var Name: String = ""
+    @objc dynamic var PhotoGroup: String = ""
+    convenience init(json: JSON) {
+        self.init()
+        self.id = json["id"].stringValue
+        self.Name = json["name"].stringValue
+        self.PhotoGroup = json["photo_200"].stringValue
+    }
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    // Сохранить группы из поиска в Firestore
+    func toFirestore() -> [String: Any] {
+        return [
+            String("id") : id,
+            String("Name") : Name,
+            String("PhotoGroup") : PhotoGroup
+        ]
+    }
 }
