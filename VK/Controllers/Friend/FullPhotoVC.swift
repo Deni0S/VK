@@ -10,7 +10,7 @@ import UIKit
 
 class FullPhotoVC: UIViewController {
     @IBOutlet weak var photoImageView: UIImageView?
-    var photos: [String] = [String]()
+    var photos: [Photo] = []
     var indexPath = 0
     var interactivAnimator: UIViewPropertyAnimator!
     
@@ -18,6 +18,9 @@ class FullPhotoVC: UIViewController {
         super.viewDidLoad()
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan(_ :)))
         self.view.addGestureRecognizer(recognizer)
+        if let PhotoImage = URL(string: "\(self.photos[self.indexPath].url)") {
+            self.photoImageView?.kf.setImage(with: PhotoImage)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -46,7 +49,9 @@ class FullPhotoVC: UIViewController {
                                   duration: 1,
                                   options: isLeftSwipe ? .transitionFlipFromLeft : .transitionFlipFromRight,
                                   animations: {
-                                    self.photoImageView?.image = UIImage(systemName: self.photos[self.indexPath])
+                                    if let PhotoImage = URL(string: "\(self.photos[self.indexPath].url)") {
+                                        self.photoImageView?.kf.setImage(with: PhotoImage)
+                                    }
                 }) 
             })
             // Поставить анимацию на паузу

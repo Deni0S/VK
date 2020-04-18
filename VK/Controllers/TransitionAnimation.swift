@@ -18,7 +18,7 @@ class TransitionAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 2
+        return 1
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
