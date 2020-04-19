@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import RealmSwift
-import Firebase
+//import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Добавим режим удаления Realm при ошибке для экспериментов
         Realm.Configuration.defaultConfiguration = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         // Firebase
-        FirebaseApp.configure()
+//        FirebaseApp.configure()
         // Override point for customization after application launch.
         return true
     }
