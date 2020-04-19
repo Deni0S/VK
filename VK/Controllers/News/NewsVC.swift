@@ -7,44 +7,99 @@
 //
 
 import UIKit
+import RealmSwift
 
 class NewsVC: UITableViewController {
-    var news = [""]
-
+    var news: [News] = []
+    let session = Session.instance
+    var newsTokenRealm: NotificationToken?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Загрузить данные
+        loadNewsData()
+    }
+    
+    // Загрузить данные
+    func loadNewsData() {
+        let service = VKService()
+        service.getNews() { [weak self] error in
+            if let error = error {
+                print(error)
+                return
+            }
+            // Загрузить данные из базы
+            self?.loadNewsFromRealm()
+        }
+    }
+    
+    // Загрузить данные из Realm и подписаться на изменения Notifocations
+    func loadNewsFromRealm() {
+        let realm = try! Realm()
+        // Получить объекты и отсортировать по дате
+        let news = realm.objects(News.self).sorted(byKeyPath: "Date", ascending: false)
+        // Подписаться на изменения Realm Notofocations
+        newsTokenRealm = news.observe({ changes in
+            switch changes {
+            case .initial(let results):
+//                print(results)
+                // Переделать results  в массив
+                self.news = Array(results)
+                // Перезагрузить таблицу
+                self.tableView?.reloadData()
+            case .update(let results, let deletions, let insertions, let modifications):
+//                print(deletions, insertions, modifications)
+                // Переделать results  в массив
+                self.news = Array(results)
+                // Обновить таблицу и узнать когда завершиться обновление
+                self.tableView?.performBatchUpdates({
+                    // Добавились строки
+                    self.tableView?.insertRows(at: insertions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Удалились строки
+                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    // Изменились строки
+                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                })
+            case .error(let error):
+                print(error)
+            }
+        })
+    }
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 2
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return news.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = NewsCell()
         // Получаем ячейку из пула
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPost", for: indexPath) as! NewsCell
-            return cell
+            cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPost", for: indexPath) as! NewsCell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPhoto", for: indexPath) as! NewsCell
-            return cell
+            cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPhoto", for: indexPath) as! NewsCell
         }
+        // Заполнить ячейку
+        cell.setupWithNews(news[indexPath.row], indexPath)
+        return cell
     }
-    
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

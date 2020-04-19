@@ -17,6 +17,7 @@ enum VKServiceMethod {
     case getFriend
     case getGroup
     case getGroupSearch
+    case getNews
     
     var methodName: String {
         switch self {
@@ -28,6 +29,8 @@ enum VKServiceMethod {
             return "groups.get"
         case .getGroupSearch:
             return "groups.search"
+        case .getNews:
+            return "newsfeed.get"
         }
     }
     
@@ -41,6 +44,8 @@ enum VKServiceMethod {
             return "extended=1"
         case .getGroupSearch:
             return "count=100"
+        case .getNews:
+            return "filters=post,photo&return_banned=0"
         }
     }
 }
@@ -226,4 +231,71 @@ class VKService {
     }
      */
 
+    // Новости
+    func getNews(complition: ((Error?) -> Void)? = nil) {
+        // Создать URL по частям
+        let urlPath = self.getURLpath(for: .getNews)
+        // Статический метод получения ответа Alamofire
+        AF.request(urlPath).responseData {responce in
+            // Обработать ошибки
+            if let error = responce.error {
+                // Вызвать кусочек кода в главном потоке асинхронно
+                DispatchQueue.main.async {
+                    complition?(error)
+                }
+            } else {
+                // SwiftyJSON Cериализация
+                if let json = try? JSON(data: responce.value!) {
+//                        debugPrint(json)
+                    // SwiftyJSON Парсинг
+                    let newsProfiles = json["response"]["profiles"].arrayValue.map { NewsProfiles(json: $0) }
+                    let newsGroups = json["response"]["groups"].arrayValue.map { NewsGroups(json: $0) }
+//                        debugPrint(newsProfiles, newsGroups)
+                    // Сохранить источник  новостей в базу Realm
+                    self.saveSourceNews (newsProfiles, newsGroups)
+                    let news = json["response"]["items"].arrayValue.map { News(json: $0) }
+//                        debugPrint(news)
+                    // Сохранить новости вместе с исночниками в Realm
+                    self.saveNewsData(news)
+                    // Вызвать кусочек кода в главном потоке асинхронно
+                    DispatchQueue.main.async {
+                        // Передать данные через замыкание
+                        complition?(nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    // Сохранить в Realm источники новостей
+    func saveSourceNews(_ pr: [NewsProfiles], _ gr: [NewsGroups]) {
+        let realm = try! Realm()
+        let oldNewsProfiles = realm.objects(NewsProfiles.self)
+        let oldNewsGroups = realm.objects(NewsGroups.self)
+        do {
+            try realm.write {
+                realm.delete(oldNewsProfiles)
+                realm.delete(oldNewsGroups)
+                realm.add(pr, update: .all)
+                realm.add(gr, update: .all)
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    // Сохранить в Realm новости вместе с источниками
+    func saveNewsData(_ ns: [News]) {
+        let realm = try! Realm()
+        let oldNews = realm.objects(News.self)
+        do {
+            try realm.write {
+                realm.delete(oldNews)
+                realm.add(ns, update: .all)
+            }
+        } catch {
+            print(error)
+        }
+        
+    }
 }

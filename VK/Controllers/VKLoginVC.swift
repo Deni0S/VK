@@ -45,7 +45,7 @@ class VKLoginVC: UIViewController {
             URLQueryItem(name: "client_id", value: "6675875"), // id приложения
             URLQueryItem(name: "redirect_uri", value: "https://oauth.vk.com/blank.html" ), // переход
             URLQueryItem(name: "response_type", value: "token" ), // ключ доступа
-            URLQueryItem(name: "scope", value: "photos, friends, groups, offline" ), // получить доступ (offline - бессрочный token)
+            URLQueryItem(name: "scope", value: "photos, friends, groups, offline, wall" ), // получить доступ (offline - бессрочный token)
             URLQueryItem(name: "v", value: "5.101" ) // последняя версия
         ]
         // Безопасно вызвать
