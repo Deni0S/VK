@@ -13,11 +13,10 @@ class GroupSearchCell: UITableViewCell {
     @IBOutlet weak var groupSearchName: UILabel!
     
     // Заполнить ячейку полученными данными и действиями
-    func fillCell(_ group: Group) {
+    func fillCell(_ group: Group, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         groupSearchName.text = "\(group.Name)"
-        if let GroupImage = URL(string: "\(group.PhotoGroup)") {
-            groupSearchAvatar.kf.setImage(with: GroupImage)
-        }
+        // Установить картинку из кеша
+        groupSearchAvatar.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: group.PhotoGroup)
     }
     
     override func awakeFromNib() {

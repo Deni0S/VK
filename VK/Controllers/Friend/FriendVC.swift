@@ -77,6 +77,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     var currentFriends28: [User] = [User]()
     var currentFriends29: [User] = [User]()
     var currentFriends30: [User] = [User]()
+    var dataProcessing: DataProcessingService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,8 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         // Установим действие кнопки поиска
         searchButton.target = self
         searchButton.action = #selector(searchButtonOnTap)
+        // Проинициализируем сервис обработки данных
+        dataProcessing = DataProcessingService.init(container: self.tableView)
     }
     
     @objc func searchButtonOnTap() {
@@ -424,69 +427,69 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         // Заполнить ячейку каждой секции полученными данными
         switch indexPath.section {
         case 0:
-            cell.fillCell(currentFriends0[indexPath.row])
+            cell.fillCell(currentFriends0[indexPath.row], indexPath, dataProcessing!)
         case 1:
-            cell.fillCell(currentFriends1[indexPath.row])
+            cell.fillCell(currentFriends1[indexPath.row], indexPath, dataProcessing!)
         case 2:
-            cell.fillCell(currentFriends2[indexPath.row])
+            cell.fillCell(currentFriends2[indexPath.row], indexPath, dataProcessing!)
         case 3:
-            cell.fillCell(currentFriends3[indexPath.row])
+            cell.fillCell(currentFriends3[indexPath.row], indexPath, dataProcessing!)
         case 4:
-            cell.fillCell(currentFriends4[indexPath.row])
+            cell.fillCell(currentFriends4[indexPath.row], indexPath, dataProcessing!)
         case 5:
-            cell.fillCell(currentFriends5[indexPath.row])
+            cell.fillCell(currentFriends5[indexPath.row], indexPath, dataProcessing!)
         case 6:
-            cell.fillCell(currentFriends6[indexPath.row])
+            cell.fillCell(currentFriends6[indexPath.row], indexPath, dataProcessing!)
         case 7:
-            cell.fillCell(currentFriends7[indexPath.row])
+            cell.fillCell(currentFriends7[indexPath.row], indexPath, dataProcessing!)
         case 8:
-            cell.fillCell(currentFriends8[indexPath.row])
+            cell.fillCell(currentFriends8[indexPath.row], indexPath, dataProcessing!)
         case 9:
-            cell.fillCell(currentFriends9[indexPath.row])
+            cell.fillCell(currentFriends9[indexPath.row], indexPath, dataProcessing!)
         case 10:
-            cell.fillCell(currentFriends10[indexPath.row])
+            cell.fillCell(currentFriends10[indexPath.row], indexPath, dataProcessing!)
         case 11:
-            cell.fillCell(currentFriends11[indexPath.row])
+            cell.fillCell(currentFriends11[indexPath.row], indexPath, dataProcessing!)
         case 12:
-            cell.fillCell(currentFriends12[indexPath.row])
+            cell.fillCell(currentFriends12[indexPath.row], indexPath, dataProcessing!)
         case 13:
-            cell.fillCell(currentFriends13[indexPath.row])
+            cell.fillCell(currentFriends13[indexPath.row], indexPath, dataProcessing!)
         case 14:
-            cell.fillCell(currentFriends14[indexPath.row])
+            cell.fillCell(currentFriends14[indexPath.row], indexPath, dataProcessing!)
         case 15:
-            cell.fillCell(currentFriends15[indexPath.row])
+            cell.fillCell(currentFriends15[indexPath.row], indexPath, dataProcessing!)
         case 16:
-           cell.fillCell(currentFriends16[indexPath.row])
+           cell.fillCell(currentFriends16[indexPath.row], indexPath, dataProcessing!)
         case 17:
-            cell.fillCell(currentFriends17[indexPath.row])
+            cell.fillCell(currentFriends17[indexPath.row], indexPath, dataProcessing!)
         case 18:
-            cell.fillCell(currentFriends18[indexPath.row])
+            cell.fillCell(currentFriends18[indexPath.row], indexPath, dataProcessing!)
         case 19:
-            cell.fillCell(currentFriends19[indexPath.row])
+            cell.fillCell(currentFriends19[indexPath.row], indexPath, dataProcessing!)
         case 20:
-            cell.fillCell(currentFriends20[indexPath.row])
+            cell.fillCell(currentFriends20[indexPath.row], indexPath, dataProcessing!)
         case 21:
-            cell.fillCell(currentFriends21[indexPath.row])
+            cell.fillCell(currentFriends21[indexPath.row], indexPath, dataProcessing!)
         case 22:
-            cell.fillCell(currentFriends22[indexPath.row])
+            cell.fillCell(currentFriends22[indexPath.row], indexPath, dataProcessing!)
         case 23:
-            cell.fillCell(currentFriends23[indexPath.row])
+            cell.fillCell(currentFriends23[indexPath.row], indexPath, dataProcessing!)
         case 24:
-            cell.fillCell(currentFriends24[indexPath.row])
+            cell.fillCell(currentFriends24[indexPath.row], indexPath, dataProcessing!)
         case 25:
-            cell.fillCell(currentFriends25[indexPath.row])
+            cell.fillCell(currentFriends25[indexPath.row], indexPath, dataProcessing!)
         case 26:
-            cell.fillCell(currentFriends26[indexPath.row])
+            cell.fillCell(currentFriends26[indexPath.row], indexPath, dataProcessing!)
         case 27:
-            cell.fillCell(currentFriends27[indexPath.row])
+            cell.fillCell(currentFriends27[indexPath.row], indexPath, dataProcessing!)
         case 28:
-            cell.fillCell(currentFriends28[indexPath.row])
+            cell.fillCell(currentFriends28[indexPath.row], indexPath, dataProcessing!)
         case 29:
-            cell.fillCell(currentFriends29[indexPath.row])
+            cell.fillCell(currentFriends29[indexPath.row], indexPath, dataProcessing!)
         case 30:
-            cell.fillCell(currentFriends30[indexPath.row])
+            cell.fillCell(currentFriends30[indexPath.row], indexPath, dataProcessing!)
         default:
-            cell.fillCell(searchFriends[indexPath.row])
+            cell.fillCell(searchFriends[indexPath.row], indexPath, dataProcessing!)
         }
         // Установить действия в ячейку
         cell.setupAction()

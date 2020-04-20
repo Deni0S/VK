@@ -13,10 +13,13 @@ class NewsVC: UITableViewController {
     var news: [News] = []
     let session = Session.instance
     var newsTokenRealm: NotificationToken?
+    var dataProcessing: DataProcessingService?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
+        // Проинициализируем сервис обработки данных
+        dataProcessing = DataProcessingService.init(container: self.tableView)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -96,7 +99,7 @@ class NewsVC: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPhoto", for: indexPath) as! NewsCell
         }
         // Заполнить ячейку
-        cell.setupWithNews(news[indexPath.row], indexPath)
+        cell.fillCell(news[indexPath.row], indexPath, dataProcessing!)
         return cell
     }
 

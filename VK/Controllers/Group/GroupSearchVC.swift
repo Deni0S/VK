@@ -13,12 +13,15 @@ class GroupSearchVC: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     var groupsSearch: [Group] = []
     let service = VKService()
-
+    var dataProcessing: DataProcessingService?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         searchBar.placeholder = "начните поиск групп на английском"
         searchBar.delegate = self
+        // Проинициализируем сервис обработки данных
+        dataProcessing = DataProcessingService.init(container: self.tableView)
     }
 
     // MARK: - Search Bar Delegate
@@ -53,7 +56,7 @@ class GroupSearchVC: UITableViewController, UISearchBarDelegate {
         // Получаем имя группы для конкретной строки
         let groupSearch = groupsSearch[indexPath.row]
         // Заполнить ячейку полученными данными и действиями
-        cell.fillCell(groupSearch)
+        cell.fillCell(groupSearch, indexPath, dataProcessing!)
         return cell
     }
     

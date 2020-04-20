@@ -16,10 +16,9 @@ class PhotoFriendCell: UICollectionViewCell {
     var timeDuration = 0.5
     
     // Заполнить ячейку полученными данными и действиями
-    func fillCell(_ photo: Photo) {
-        if let PhotoImage = URL(string: "\(photo.url)") {
-            photoImageView.kf.setImage(with: PhotoImage)
-        }
+    func fillCell(_ photo: Photo, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
+        // Установить картинку из кеша
+        photoImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: photo.url)
         likeLabel?.text = "\(likeCount)"
         likeButton.addTarget(self, action: #selector(likeOnTap), for: .touchDown)
     }

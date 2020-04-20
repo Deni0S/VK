@@ -14,11 +14,10 @@ class FriendCell: UITableViewCell {
     @IBOutlet weak var avatarAnimationButton: UIButton!
     
     // Заполнить ячейку полученными данными
-    func fillCell(_ friend: User) {
+    func fillCell(_ friend: User, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         friendName.text = "\(friend.FirstName) \(friend.LastName)"
-        if let PhotoImage = URL(string: "\(friend.PhotoFriend)") {
-            friendAvatar.kf.setImage(with: PhotoImage)
-        }
+        // Установить картинку из кеша
+        friendAvatar.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: friend.PhotoFriend)
     }
     
     // Установить действия в ячейку

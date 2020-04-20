@@ -12,12 +12,15 @@ import RealmSwift
 class GroupVC: UITableViewController {
     var groups: [Group] = []
     var groupToken: NotificationToken?
+    var dataProcessing: DataProcessingService?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         // Загрузим данные
         loadGroupData()
+        // Проинициализируем сервис обработки данных
+        dataProcessing = DataProcessingService.init(container: self.tableView)
     }
     
     // Загрузить данные
@@ -104,7 +107,7 @@ class GroupVC: UITableViewController {
         // Получаем имя группы для конкретной строки
         let group = groups[indexPath.row]
         // Заполнить ячейку полученными данными и действиями
-        cell.fillCell(group)
+        cell.fillCell(group, indexPath, dataProcessing!)
         return cell
     }
     

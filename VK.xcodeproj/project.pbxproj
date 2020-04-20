@@ -38,6 +38,7 @@
 		92A1BF87244CF05700EFD181 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF86244CF05700EFD181 /* News.swift */; };
 		92A1BF89244CF07F00EFD181 /* NewsProfiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF88244CF07F00EFD181 /* NewsProfiles.swift */; };
 		92A1BF8B244CF09800EFD181 /* NewsGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF8A244CF09800EFD181 /* NewsGroups.swift */; };
+		92A1BF8D244E4FBA00EFD181 /* DataProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */; };
 		92A8156723FF29FC00C56932 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8156623FF29FC00C56932 /* Session.swift */; };
 		92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */; };
 		92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B823DF93880095C5CA /* PhotoFriendVC.swift */; };
@@ -106,6 +107,7 @@
 		92A1BF86244CF05700EFD181 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		92A1BF88244CF07F00EFD181 /* NewsProfiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsProfiles.swift; sourceTree = "<group>"; };
 		92A1BF8A244CF09800EFD181 /* NewsGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsGroups.swift; sourceTree = "<group>"; };
+		92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcessingService.swift; sourceTree = "<group>"; };
 		92A8156623FF29FC00C56932 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCustom.swift; sourceTree = "<group>"; };
 		92C011B823DF93880095C5CA /* PhotoFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendVC.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				92F39344240465F9005A3AC4 /* VKService.swift */,
 				92A8156623FF29FC00C56932 /* Session.swift */,
+				92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -593,6 +596,7 @@
 				929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */,
 				929A32CB23D63C25006B43D6 /* Group.swift in Sources */,
 				928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */,
+				92A1BF8D244E4FBA00EFD181 /* DataProcessingService.swift in Sources */,
 				922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */,
 				92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,

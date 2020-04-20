@@ -15,6 +15,7 @@ class PhotoFriendVC: UICollectionViewController {
     var photos: [Photo] = []
     var photoToken: NotificationToken?
     private var buttons: [UIButton] = []
+    var dataProcessing: DataProcessingService?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,8 @@ class PhotoFriendVC: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         // Загрузим данные
         loadFriendData()
+        // Проинициализируем сервис обработки данных
+        dataProcessing = DataProcessingService.init(container: self.collectionView)
     }
     
     // Загрузить данные
@@ -112,7 +115,7 @@ class PhotoFriendVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFriendCell", for: indexPath) as! PhotoFriendCell
         // Заполнить ячейку полученными данными и действиями
-        cell.fillCell(photos[indexPath.row])
+        cell.fillCell(photos[indexPath.row], indexPath, dataProcessing!)
         return cell
     }
 

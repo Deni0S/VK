@@ -29,28 +29,19 @@ class NewsCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    private var dateFormatter: DateFormatter {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
-        return dateFormatter
-    }
 
     // MARK: - Заполнить ячейку
-    func setupWithNews(_ news: News, _ indexPath: IndexPath) {
+    func fillCell(_ news: News, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         nameLabel.text = "\(news.Name)"
         newsTextView.text = "\(news.TextNews)"
         likesLabel.text = "\(news.Likes)"
         commentsLabel.text = "\(news.Comments)"
         repostsLabel.text = "\(news.Reposts)"
         viewsLabel.text = "\(news.Views)"
-        if let PhotoImage = URL(string: "\(news.Avatar)") {
-            avatarImageView.kf.setImage(with: PhotoImage)
-        }
-        if let PhotoImage = URL(string: "\(news.Photo)") {
-            newsImageView.kf.setImage(with: PhotoImage)
-        }
-        let date = Date(timeIntervalSince1970: news.Date)
-        postDataLabel.text = dateFormatter.string(from: date)
+        // Установить дату из кеша
+        postDataLabel.text = dataProcessing.getDateText(forIndexPath: indexPath, andTimestemp: news.Date)
+         // Установить картинку из кеша
+        avatarImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: news.Avatar)
+        newsImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: news.Photo)
     }
 }

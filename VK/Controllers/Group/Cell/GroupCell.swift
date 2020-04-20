@@ -15,11 +15,10 @@ class GroupCell: UITableViewCell {
     @IBOutlet weak var avatarAnimationButton: UIButton!
     
     // Заполнить ячейку полученными данными и действиями
-    func fillCell(_ group: Group) {
+    func fillCell(_ group: Group, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         groupName.text = "\(group.Name)"
-        if let GroupImage = URL(string: "\(group.PhotoGroup)") {
-            groupAvatar.kf.setImage(with: GroupImage)
-        }
+        // Установить картинку из кеша
+        groupAvatar.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: group.PhotoGroup)
         avatarAnimationButton.addTarget(self, action: #selector(avatarAnimationButtonOnTap), for: .touchDown)
     }
     
