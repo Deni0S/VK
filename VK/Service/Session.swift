@@ -13,7 +13,7 @@ import WebKit
 class Session {
     var token = ""
     var userid = ""
-    var photoUserId = ""
+    var photoUserId: String? = nil
     private init() {}
     static let instance = Session()
     

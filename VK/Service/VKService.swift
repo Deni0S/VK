@@ -45,7 +45,7 @@ enum VKServiceMethod {
         case .getGroupSearch:
             return "count=100"
         case .getNews:
-            return "filters=post,photo&return_banned=0"
+            return "count=20&filters=post,photo&return_banned=0"
         }
     }
 }
@@ -62,6 +62,7 @@ class VKService {
     let groupQueue = DispatchQueue(label: "Group Queue", qos: .utility)
     let groupSearchQueue = DispatchQueue(label: "GroupSearch Queue", qos: .utility)
     let newsQueue = DispatchQueue(label: "News Queue", qos: .utility)
+    var nextFrom = ""
     
     // Получить URL
     func getURLpath(for method: VKServiceMethod) -> String {
@@ -74,11 +75,15 @@ class VKService {
     }
     
     // Фотографии
-    func getPhoto(id: String, complition: ((Error?) -> Void)? = nil) {
+    func getPhoto(id: String? = nil, complition: ((Error?) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для фотографий
         photoQueue.async {
             // Добавим дополнительный параметр id пользователя
-            self.additionalParametr = "owner_id=\(id)&"
+            if id != nil {
+                self.additionalParametr = "owner_id=\(id ?? "")&"
+            } else {
+                self.additionalParametr = ""
+            }
             // Создать URL по частям
             let urlPath = self.getURLpath(for: .getPhoto)
             // Статический метод получения ответа Alamofire
@@ -110,7 +115,7 @@ class VKService {
     // Сохранить фото в Realm
     func savePhotoData(_ vk: [Photo]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
-        photoQueue.async(flags: .barrier) {
+        photoQueue.sync(flags: .barrier) {
             let realm = try! Realm()
             let oldPhoto = realm.objects(Photo.self)
             do {
@@ -159,7 +164,7 @@ class VKService {
     // Сохранить друзей в Realm
     func saveFriendData(_ vk: [User]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
-//        friendQueue.async(flags: .barrier) {
+        friendQueue.sync(flags: .barrier) {
             let realm = try! Realm()
             let oldFriend = realm.objects(User.self)
             do {
@@ -170,7 +175,7 @@ class VKService {
             } catch {
                 print(error)
             }
-//        }
+        }
     }
     
     // Группы
@@ -207,7 +212,7 @@ class VKService {
     // Сохранить группы в Realm
     func saveGroupData(_ vk: [Group]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
-        groupQueue.async(flags: .barrier) {
+        groupQueue.sync(flags: .barrier) {
             let realm = try! Realm()
             let oldGroup = realm.objects(Group.self)
             do {
@@ -258,7 +263,7 @@ class VKService {
     /* // Сохранить группы в Firestore
     func saveGroupSearchFirestore(_ vk: [Group]) {
         // Перейти в последовательную, фоновую очередь для поиска по группам
-        groupSearchQueue.async(flags: .barrier) {
+        groupSearchQueue.sync(flags: .barrier) {
             let db = Firestore.firestore()
             db.collection("id\(Session.instance.userid)").document("GroupSearch").setData(vk
                 .map { $0.toFirestore() }
@@ -273,9 +278,15 @@ class VKService {
      */
 
     // Новости
-    func getNews(complition: ((Error?) -> Void)? = nil) {
+    func getNews(dateLastNews: Double? = nil, isRefresh: Bool = false, complition: ((Error?) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для новостей
         newsQueue.async {
+            // Добавить дополнительный параметр для поискового запроса
+            if dateLastNews != nil {
+                self.additionalParametr = "start_time=\(dateLastNews ?? 0)&\(self.nextFrom)"
+            } else {
+                self.additionalParametr = self.nextFrom
+            }
             // Создать URL по частям
             let urlPath = self.getURLpath(for: .getNews)
             // Статический метод получения ответа Alamofire
@@ -289,17 +300,26 @@ class VKService {
                 } else {
                     // SwiftyJSON Cериализация
                     if let json = try? JSON(data: responce.value!) {
-//                        debugPrint(json)
+                        debugPrint(json)
                         // SwiftyJSON Парсинг
                         let newsProfiles = json["response"]["profiles"].arrayValue.map { NewsProfiles(json: $0) }
                         let newsGroups = json["response"]["groups"].arrayValue.map { NewsGroups(json: $0) }
-//                        debugPrint(newsProfiles, newsGroups)
+                        let nextFrom = json["response"]["next_from"].stringValue
+                        if nextFrom.first != nil {
+                            self.nextFrom = "start_from=\(nextFrom.first ?? " ")&"
+                        }
+                        debugPrint(newsProfiles, newsGroups, nextFrom)
                         // Сохранить источник  новостей в базу Realm
                         self.saveSourceNews (newsProfiles, newsGroups)
                         let news = json["response"]["items"].arrayValue.map { News(json: $0) }
-//                        debugPrint(news)
-                        // Сохранить новости вместе с исночниками в Realm
-                        self.saveNewsData(news)
+                        debugPrint(news)
+                        if isRefresh {
+                            // Если это обновление пустить по другому сценарию без удаления
+                            self.refreshNewsData(news)
+                        } else {
+                            // Сохранить новости вместе с исночниками в Realm
+                            self.saveNewsData(news)
+                        }
                         // Вызвать кусочек кода в главном потоке асинхронно
                         DispatchQueue.main.async {
                             // Передать данные через замыкание
@@ -331,13 +351,27 @@ class VKService {
     // Сохранить в Realm новости вместе с источниками
     func saveNewsData(_ ns: [News]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
-        newsQueue.async(flags: .barrier) {
+        newsQueue.sync(flags: .barrier) {
             let realm = try! Realm()
             let oldNews = realm.objects(News.self)
             do {
                 try realm.write {
                     realm.delete(oldNews)
                     realm.add(ns, update: .all)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    // Добавить в Realm обновленные новости
+    func refreshNewsData(_ ns: [News]) {
+        newsQueue.async {
+            let realm = try! Realm()
+            do {
+                try realm.write {
+                    realm.add(ns, update: .modified)
                 }
             } catch {
                 print(error)

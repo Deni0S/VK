@@ -57,7 +57,7 @@ class VKLoginVC: UIViewController {
     // Вернуть данные пользователя
     func loadData() {
         let service = VKService()
-        service.getPhoto(id: "")
+        service.getPhoto()
         service.getFriend()
         service.getGroup()
         service.getGroupSearch(search: "Music")

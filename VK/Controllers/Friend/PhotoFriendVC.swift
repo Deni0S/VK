@@ -31,16 +31,18 @@ class PhotoFriendVC: UICollectionViewController {
     
     // Загрузить данные
     func loadFriendData() {
-        let service = VKService()
-        service.getPhoto(id: Session.instance.photoUserId) { [weak self] error in
-            if let error = error {
-                print(error)
-                return
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
+            let service = VKService()
+            service.getPhoto(id: Session.instance.photoUserId) { [weak self] error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                // Загрузить данные из базы
+                self?.loadDataFromRealm()
             }
-            // Загрузить данные из базы
-            self?.loadDataFromRealm()
+            Session.instance.photoUserId = nil
         }
-        Session.instance.photoUserId = ""
     }
     
     // Загрузить данные из Realm и подписаться на изменения Notifocations

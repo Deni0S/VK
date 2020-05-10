@@ -10,16 +10,20 @@ import UIKit
 import RealmSwift
 
 class NewsVC: UITableViewController {
+    let service = VKService()
     var news: [News] = []
     let session = Session.instance
     var newsTokenRealm: NotificationToken?
     var dataProcessing: DataProcessingService?
+    var isLoading = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.tableFooterView = UIView()
         // Проинициализируем сервис обработки данных
         dataProcessing = DataProcessingService.init(container: self.tableView)
+        // Назначаем себя делегатом Data Source
+        self.tableView.prefetchDataSource = self
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -31,18 +35,42 @@ class NewsVC: UITableViewController {
         super.viewDidAppear(animated)
         // Загрузить данные
         loadNewsData()
+        // Установить refresh сontrol
+        setupRefreshControl()
+    }
+    
+    fileprivate func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Загружаю новости")
+        refreshControl?.tintColor = .gray
+        refreshControl?.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
+    }
+    
+    // Обновить новости
+    @objc func refreshNews() {
+        refreshControl?.beginRefreshing()
+        service.getNews(dateLastNews: self.news.first?.Date, isRefresh: true) { [weak self] error in
+            guard self != nil else {
+                print(error as Any)
+                return
+            }
+            self?.refreshControl?.endRefreshing()
+        }
     }
     
     // Загрузить данные
-    func loadNewsData() {
-        let service = VKService()
-        service.getNews() { [weak self] error in
+    func loadNewsData(isRefresh: Bool = false) {
+        // Убеждаемся что мы не в процессе загрузки данных
+        isLoading = true
+        service.getNews(isRefresh: isRefresh) { [weak self] error in
             if let error = error {
                 print(error)
                 return
             }
             // Загрузить данные из базы
             self?.loadNewsFromRealm()
+            // Выключаем статус загрузки данных
+            self?.isLoading = false
         }
     }
     
@@ -55,23 +83,23 @@ class NewsVC: UITableViewController {
         newsTokenRealm = news.observe({ changes in
             switch changes {
             case .initial(let results):
-//                print(results)
+                print(results)
                 // Переделать results  в массив
                 self.news = Array(results)
                 // Перезагрузить таблицу
                 self.tableView?.reloadData()
             case .update(let results, let deletions, let insertions, let modifications):
-//                print(deletions, insertions, modifications)
+                print(deletions, insertions, modifications)
                 // Переделать results  в массив
                 self.news = Array(results)
                 // Обновить таблицу и узнать когда завершиться обновление
                 self.tableView?.performBatchUpdates({
                     // Добавились строки
-                    self.tableView?.insertRows(at: insertions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    self.tableView?.insertRows(at: insertions.map({ IndexPath(row: $0, section: 0) }), with: .none)
                     // Удалились строки
-                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    self.tableView?.deleteRows(at: deletions.map({ IndexPath(row: $0, section: 0) }), with: .none)
                     // Изменились строки
-                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(item: $0, section: 0) }), with: .automatic)
+                    self.tableView?.reloadRows(at: modifications.map({ IndexPath(row: $0, section: 0) }), with: .none)
                 })
             case .error(let error):
                 print(error)
@@ -83,7 +111,7 @@ class NewsVC: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 2
+        return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,7 +130,14 @@ class NewsVC: UITableViewController {
         cell.fillCell(news[indexPath.row], indexPath, dataProcessing!)
         return cell
     }
-
+    
+    // TODO: Доделать авторазмер под фотографию
+//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        guard let height: CGFloat = CGFloat(news[indexPath.row].PhotoHeight), let width: CGFloat = CGFloat(news[indexPath.row].PhotoWidth) else { return UITableView.automaticDimension }
+//        let heightRow = height / width * tableView.bounds.width
+//        return heightRow
+//    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -147,5 +182,17 @@ class NewsVC: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension NewsVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        // Выбираем максимальный номер отбражаемой секции
+        print(indexPaths)
+        guard let maxSection = indexPaths.map ({ $0.row }).max() else { return }
+        print(maxSection)
+        // Проверим входит ли она в три последние
+        if maxSection > news.count - 3, !isLoading {
+            loadNewsData(isRefresh: true)
+        }
+    }
 }

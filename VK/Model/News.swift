@@ -18,6 +18,8 @@ class News: Object {
     @objc dynamic var Name: String = ""
     @objc dynamic var Date: Double = 0
     @objc dynamic var Photo: String = ""
+    @objc dynamic var PhotoWidth: Int = 0
+    @objc dynamic var PhotoHeight: Int = 0
     @objc dynamic var TextNews: String = " "
     @objc dynamic var Likes: Int = 0
     @objc dynamic var Comments: Int = 0
@@ -42,6 +44,8 @@ class News: Object {
         }
         self.Date = json["date"].doubleValue
         self.Photo = json["attachments"][0]["photo"]["sizes"][3]["url"].stringValue
+        self.PhotoWidth = json["attachments"][0]["photo"]["sizes"][3]["width"].intValue
+        self.PhotoHeight = json["attachments"][0]["photo"]["sizes"][3]["height"].intValue
         self.TextNews = json["text"].stringValue
         self.Likes = json["likes"]["count"].intValue
         self.Comments = json["comments"]["count"].intValue
