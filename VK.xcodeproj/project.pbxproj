@@ -19,9 +19,13 @@
 		922C700D23CD14EF00908C68 /* VKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C700C23CD14EF00908C68 /* VKTests.swift */; };
 		922C701823CD14EF00908C68 /* VKUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C701723CD14EF00908C68 /* VKUITests.swift */; };
 		922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702923CD1CD100908C68 /* LoginVC.swift */; };
-		922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Layer.swift */; };
+		922C702F23CD330600908C68 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922C702E23CD330600908C68 /* UIView+Extension.swift */; };
 		924B0B1723F0981400F72996 /* NewsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1623F0981400F72996 /* NewsVC.swift */; };
 		924B0B1923F098E700F72996 /* NewsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924B0B1823F098E700F72996 /* NewsCell.swift */; };
+		9261868F247543900043C76C /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261868E247543900043C76C /* UIColor+Extension.swift */; };
+		92618696247600450043C76C /* User_Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92618695247600450043C76C /* User_Swift.swift */; };
+		9261869824768F450043C76C /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261869724768F450043C76C /* NewsViewModel.swift */; };
+		9261869A24768FB60043C76C /* NewsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9261869924768FB60043C76C /* NewsViewModelFactory.swift */; };
 		9280B204241D165800D83594 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9280B203241D165800D83594 /* GoogleService-Info.plist */; };
 		928543AF2445EAAE00DA3123 /* TransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */; };
 		928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928543B02446282100DA3123 /* TransitionInteractive.swift */; };
@@ -88,9 +92,13 @@
 		922C701723CD14EF00908C68 /* VKUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKUITests.swift; sourceTree = "<group>"; };
 		922C701923CD14EF00908C68 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		922C702923CD1CD100908C68 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		922C702E23CD330600908C68 /* UIView+Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Layer.swift"; sourceTree = "<group>"; };
+		922C702E23CD330600908C68 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		924B0B1623F0981400F72996 /* NewsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsVC.swift; sourceTree = "<group>"; };
 		924B0B1823F098E700F72996 /* NewsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsCell.swift; sourceTree = "<group>"; };
+		9261868E247543900043C76C /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		92618695247600450043C76C /* User_Swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User_Swift.swift; sourceTree = "<group>"; };
+		9261869724768F450043C76C /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		9261869924768FB60043C76C /* NewsViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModelFactory.swift; sourceTree = "<group>"; };
 		9280B203241D165800D83594 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimation.swift; sourceTree = "<group>"; };
 		928543B02446282100DA3123 /* TransitionInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractive.swift; sourceTree = "<group>"; };
@@ -190,7 +198,7 @@
 			children = (
 				922C6FF223CD14EF00908C68 /* AppDelegate.swift */,
 				922C6FF423CD14EF00908C68 /* SceneDelegate.swift */,
-				922C702B23CD32C000908C68 /* Helpers */,
+				922C702B23CD32C000908C68 /* Extension */,
 				92C011B323DDD3FF0095C5CA /* UIElements */,
 				922C702523CD167F00908C68 /* View */,
 				922C702623CD169900908C68 /* Controllers */,
@@ -239,6 +247,7 @@
 				928543AE2445EAAE00DA3123 /* TransitionAnimation.swift */,
 				928543B02446282100DA3123 /* TransitionInteractive.swift */,
 				9286865E24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift */,
+				9261869924768FB60043C76C /* NewsViewModelFactory.swift */,
 				929A32CC23D63DD5006B43D6 /* Friend */,
 				929A32D123D64C7A006B43D6 /* Group */,
 				924B0B1523F092C000F72996 /* News */,
@@ -246,12 +255,13 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		922C702B23CD32C000908C68 /* Helpers */ = {
+		922C702B23CD32C000908C68 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				922C702E23CD330600908C68 /* UIView+Layer.swift */,
+				922C702E23CD330600908C68 /* UIView+Extension.swift */,
+				9261868E247543900043C76C /* UIColor+Extension.swift */,
 			);
-			path = Helpers;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		924B0B1523F092C000F72996 /* News */ = {
@@ -293,11 +303,13 @@
 			isa = PBXGroup;
 			children = (
 				929A32C823D63C18006B43D6 /* User.swift */,
+				92618695247600450043C76C /* User_Swift.swift */,
 				929922FB240702FC00E6D4AF /* Photo.swift */,
 				929A32CA23D63C25006B43D6 /* Group.swift */,
 				92A1BF86244CF05700EFD181 /* News.swift */,
 				92A1BF88244CF07F00EFD181 /* NewsProfiles.swift */,
 				92A1BF8A244CF09800EFD181 /* NewsGroups.swift */,
+				9261869724768F450043C76C /* NewsViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -593,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				928543AF2445EAAE00DA3123 /* TransitionAnimation.swift in Sources */,
+				9261869824768F450043C76C /* NewsViewModel.swift in Sources */,
 				929A32D623D64CE7006B43D6 /* GroupVC.swift in Sources */,
 				929A32CB23D63C25006B43D6 /* Group.swift in Sources */,
 				928543B12446282100DA3123 /* TransitionInteractive.swift in Sources */,
@@ -600,6 +613,7 @@
 				922C702A23CD1CD100908C68 /* LoginVC.swift in Sources */,
 				92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */,
 				922C6FFD23CD14EF00908C68 /* VK.xcdatamodeld in Sources */,
+				9261868F247543900043C76C /* UIColor+Extension.swift in Sources */,
 				92F39345240465F9005A3AC4 /* VKService.swift in Sources */,
 				929A32C923D63C18006B43D6 /* User.swift in Sources */,
 				929A32D923D64D8A006B43D6 /* GroupSearchVC.swift in Sources */,
@@ -613,14 +627,16 @@
 				92A8156723FF29FC00C56932 /* Session.swift in Sources */,
 				92A1BF8B244CF09800EFD181 /* NewsGroups.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
+				92618696247600450043C76C /* User_Swift.swift in Sources */,
 				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,
 				9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */,
+				9261869A24768FB60043C76C /* NewsViewModelFactory.swift in Sources */,
 				922C6FF323CD14EF00908C68 /* AppDelegate.swift in Sources */,
 				92A1BF87244CF05700EFD181 /* News.swift in Sources */,
 				929A32DB23D64DC0006B43D6 /* GroupSearchCell.swift in Sources */,
 				929922FC240702FC00E6D4AF /* Photo.swift in Sources */,
 				922C6FF523CD14EF00908C68 /* SceneDelegate.swift in Sources */,
-				922C702F23CD330600908C68 /* UIView+Layer.swift in Sources */,
+				922C702F23CD330600908C68 /* UIView+Extension.swift in Sources */,
 				924B0B1723F0981400F72996 /* NewsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

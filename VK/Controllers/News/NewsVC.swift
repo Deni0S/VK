@@ -11,11 +11,13 @@ import RealmSwift
 
 class NewsVC: UITableViewController {
     let service = VKService()
-    var news: [News] = []
+//    var news: [News] = [] (deprecated)
     let session = Session.instance
     var newsTokenRealm: NotificationToken?
     var dataProcessing: DataProcessingService?
     var isLoading = false
+    private let viewModelFactory = NewsViewModelFactory()
+    private var viewModel: [NewsViewModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,14 +44,14 @@ class NewsVC: UITableViewController {
     fileprivate func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Загружаю новости")
-        refreshControl?.tintColor = .gray
+        refreshControl?.tintColor = .rgba(128.0, 128.0, 128.0, a: 1)
         refreshControl?.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
     }
     
     // Обновить новости
     @objc func refreshNews() {
         refreshControl?.beginRefreshing()
-        service.getNews(dateLastNews: self.news.first?.Date, isRefresh: true) { [weak self] error in
+        service.getNews(dateLastNews: self.viewModel.first?.Date, isRefresh: true) { [weak self] error in
             guard self != nil else {
                 print(error as Any)
                 return
@@ -84,14 +86,18 @@ class NewsVC: UITableViewController {
             switch changes {
             case .initial(let results):
                 print(results)
-                // Переделать results  в массив
-                self.news = Array(results)
+                // Переделать results  в массив (deprecated)
+//                self.news = Array(results)
+                // Сконструируем view Model из results
+                self.viewModel = self.viewModelFactory.constructViewModel(from: Array(results))
                 // Перезагрузить таблицу
                 self.tableView?.reloadData()
             case .update(let results, let deletions, let insertions, let modifications):
                 print(deletions, insertions, modifications)
-                // Переделать results  в массив
-                self.news = Array(results)
+                // Переделать results  в массив (deprecated)
+//                self.news = Array(results)
+                // Сконструируем view Model
+                self.viewModel = self.viewModelFactory.constructViewModel(from: Array(results))
                 // Обновить таблицу и узнать когда завершиться обновление
                 self.tableView?.performBatchUpdates({
                     // Добавились строки
@@ -115,7 +121,7 @@ class NewsVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return viewModel.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,7 +133,7 @@ class NewsVC: UITableViewController {
             cell = tableView.dequeueReusableCell(withIdentifier: "NewsCellPhoto", for: indexPath) as! NewsCell
         }
         // Заполнить ячейку
-        cell.fillCell(news[indexPath.row], indexPath, dataProcessing!)
+        cell.fillCellFactory(with: viewModel[indexPath.row], indexPath, dataProcessing!)
         return cell
     }
     
@@ -191,7 +197,7 @@ extension NewsVC: UITableViewDataSourcePrefetching {
         guard let maxSection = indexPaths.map ({ $0.row }).max() else { return }
         print(maxSection)
         // Проверим входит ли она в три последние
-        if maxSection > news.count - 3, !isLoading {
+        if maxSection > viewModel.count - 3, !isLoading {
             loadNewsData(isRefresh: true)
         }
     }

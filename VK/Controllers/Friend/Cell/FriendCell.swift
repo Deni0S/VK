@@ -60,7 +60,7 @@ class FriendCell: UITableViewCell {
     }
     
     // Заполнить ячейку полученными данными
-    func fillCell(_ friend: User, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
+    func fillCell(_ friend: User_Swift, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         friendName.text = "\(friend.FirstName) \(friend.LastName)"
         friendNamePhotoFrame()
         // Установить картинку из кеша

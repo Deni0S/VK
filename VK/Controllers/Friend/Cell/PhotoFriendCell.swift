@@ -31,7 +31,7 @@ class PhotoFriendCell: UICollectionViewCell {
                               options: .transitionFlipFromLeft,
                               animations: {
                                 self.likeLabel.text = "1"
-                                self.likeLabel.textColor = .red
+                                self.likeLabel.textColor = .rgba(255.0, 0.0, 0.0, a: 1)
             })
             UIView.transition(with: likeButton,
                               duration: timeDuration,

@@ -12,71 +12,71 @@ import RealmSwift
 class FriendVC: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchButton: UIBarButtonItem!
     private var searchBar = UISearchBar()
-    var friends: [User] = []
+    var friends: [User_Swift] = []
     var friendToken: NotificationToken?
-    var searchFriends: [User] = [User]()
-    var friends0: [User] = []
-    var friends1: [User] = []
-    var friends2: [User] = []
-    var friends3: [User] = []
-    var friends4: [User] = []
-    var friends5: [User] = []
-    var friends6: [User] = []
-    var friends7: [User] = []
-    var friends8: [User] = []
-    var friends9: [User] = []
-    var friends10: [User] = []
-    var friends11: [User] = []
-    var friends12: [User] = []
-    var friends13: [User] = []
-    var friends14: [User] = []
-    var friends15: [User] = []
-    var friends16: [User] = []
-    var friends17: [User] = []
-    var friends18: [User] = []
-    var friends19: [User] = []
-    var friends20: [User] = []
-    var friends21: [User] = []
-    var friends22: [User] = []
-    var friends23: [User] = []
-    var friends24: [User] = []
-    var friends25: [User] = []
-    var friends26: [User] = []
-    var friends27: [User] = []
-    var friends28: [User] = []
-    var friends29: [User] = []
-    var friends30: [User] = []
-    var currentFriends0: [User] = [User]()
-    var currentFriends1: [User] = [User]()
-    var currentFriends2: [User] = [User]()
-    var currentFriends3: [User] = [User]()
-    var currentFriends4: [User] = [User]()
-    var currentFriends5: [User] = [User]()
-    var currentFriends6: [User] = [User]()
-    var currentFriends7: [User] = [User]()
-    var currentFriends8: [User] = [User]()
-    var currentFriends9: [User] = [User]()
-    var currentFriends10: [User] = [User]()
-    var currentFriends11: [User] = [User]()
-    var currentFriends12: [User] = [User]()
-    var currentFriends13: [User] = [User]()
-    var currentFriends14: [User] = [User]()
-    var currentFriends15: [User] = [User]()
-    var currentFriends16: [User] = [User]()
-    var currentFriends17: [User] = [User]()
-    var currentFriends18: [User] = [User]()
-    var currentFriends19: [User] = [User]()
-    var currentFriends20: [User] = [User]()
-    var currentFriends21: [User] = [User]()
-    var currentFriends22: [User] = [User]()
-    var currentFriends23: [User] = [User]()
-    var currentFriends24: [User] = [User]()
-    var currentFriends25: [User] = [User]()
-    var currentFriends26: [User] = [User]()
-    var currentFriends27: [User] = [User]()
-    var currentFriends28: [User] = [User]()
-    var currentFriends29: [User] = [User]()
-    var currentFriends30: [User] = [User]()
+    var searchFriends: [User_Swift] = [User_Swift]()
+    var friends0: [User_Swift] = []
+    var friends1: [User_Swift] = []
+    var friends2: [User_Swift] = []
+    var friends3: [User_Swift] = []
+    var friends4: [User_Swift] = []
+    var friends5: [User_Swift] = []
+    var friends6: [User_Swift] = []
+    var friends7: [User_Swift] = []
+    var friends8: [User_Swift] = []
+    var friends9: [User_Swift] = []
+    var friends10: [User_Swift] = []
+    var friends11: [User_Swift] = []
+    var friends12: [User_Swift] = []
+    var friends13: [User_Swift] = []
+    var friends14: [User_Swift] = []
+    var friends15: [User_Swift] = []
+    var friends16: [User_Swift] = []
+    var friends17: [User_Swift] = []
+    var friends18: [User_Swift] = []
+    var friends19: [User_Swift] = []
+    var friends20: [User_Swift] = []
+    var friends21: [User_Swift] = []
+    var friends22: [User_Swift] = []
+    var friends23: [User_Swift] = []
+    var friends24: [User_Swift] = []
+    var friends25: [User_Swift] = []
+    var friends26: [User_Swift] = []
+    var friends27: [User_Swift] = []
+    var friends28: [User_Swift] = []
+    var friends29: [User_Swift] = []
+    var friends30: [User_Swift] = []
+    var currentFriends0: [User_Swift] = [User_Swift]()
+    var currentFriends1: [User_Swift] = [User_Swift]()
+    var currentFriends2: [User_Swift] = [User_Swift]()
+    var currentFriends3: [User_Swift] = [User_Swift]()
+    var currentFriends4: [User_Swift] = [User_Swift]()
+    var currentFriends5: [User_Swift] = [User_Swift]()
+    var currentFriends6: [User_Swift] = [User_Swift]()
+    var currentFriends7: [User_Swift] = [User_Swift]()
+    var currentFriends8: [User_Swift] = [User_Swift]()
+    var currentFriends9: [User_Swift] = [User_Swift]()
+    var currentFriends10: [User_Swift] = [User_Swift]()
+    var currentFriends11: [User_Swift] = [User_Swift]()
+    var currentFriends12: [User_Swift] = [User_Swift]()
+    var currentFriends13: [User_Swift] = [User_Swift]()
+    var currentFriends14: [User_Swift] = [User_Swift]()
+    var currentFriends15: [User_Swift] = [User_Swift]()
+    var currentFriends16: [User_Swift] = [User_Swift]()
+    var currentFriends17: [User_Swift] = [User_Swift]()
+    var currentFriends18: [User_Swift] = [User_Swift]()
+    var currentFriends19: [User_Swift] = [User_Swift]()
+    var currentFriends20: [User_Swift] = [User_Swift]()
+    var currentFriends21: [User_Swift] = [User_Swift]()
+    var currentFriends22: [User_Swift] = [User_Swift]()
+    var currentFriends23: [User_Swift] = [User_Swift]()
+    var currentFriends24: [User_Swift] = [User_Swift]()
+    var currentFriends25: [User_Swift] = [User_Swift]()
+    var currentFriends26: [User_Swift] = [User_Swift]()
+    var currentFriends27: [User_Swift] = [User_Swift]()
+    var currentFriends28: [User_Swift] = [User_Swift]()
+    var currentFriends29: [User_Swift] = [User_Swift]()
+    var currentFriends30: [User_Swift] = [User_Swift]()
     var dataProcessing: DataProcessingService?
     
     override func viewDidLoad() {
@@ -109,26 +109,40 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
         }
     }
     
+    // Адаптер для перехода с модели Realm на Swift
+    func userAdapter(from User: User) -> User_Swift {
+        return User_Swift(id: User.id,
+                          FirstName: User.FirstName,
+                          LastName: User.LastName,
+                          PhotoFriend: User.PhotoFriend)
+    }
+    
     // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
-        let realm = try! Realm()
+        let realm = try? Realm()
         // Получить объект и отсортировать по имени
-        let friends = realm.objects(User.self).sorted(byKeyPath: "FirstName")
+        let friends = realm?.objects(User.self).sorted(byKeyPath: "FirstName")
         // Подписаться на изменения Realm Notifocations
-        friendToken = friends.observe({ changes in
+        friendToken = friends?.observe({ changes in
             switch changes {
             case .initial(let results):
                 print(results)
-                // Переделать results  в массив
-                self.friends = Array(results)
+                // Переделать results в массив через адаптер
+                for friend in Array(results) {
+                    self.friends.append(self.userAdapter(from: friend))
+                }
                 self.filterABC()
                 self.setupSearchFriends()
                 // Перезагрузить коллекцию
                 self.tableView?.reloadData()
             case .update(let results, let deletions, let insertions, let modifications):
                 print(deletions, insertions, modifications)
-                // Переделать results  в массив
-                self.friends = Array(results)
+                // Обнулим массив друзей
+                self.friends = []
+                // Переделать results в массив через адаптер
+                for friend in Array(results) {
+                    self.friends.append(self.userAdapter(from: friend))
+                }
                 self.filterABC()
                 self.setupSearchFriends()
                 // Обновить коллекцию и узнать когда завершиться обновление
@@ -348,7 +362,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     // Создадим Header для каждой ячейки
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = .rgba(128.0, 128.0, 128.0, a: 1)
         view.alpha = 0.5
         let lable = UILabel(frame: CGRect(x: 20, y: 0, width: UIScreen.main.bounds.width, height: 24))
         switch section {

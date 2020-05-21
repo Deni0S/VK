@@ -30,7 +30,7 @@ class NewsCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    // MARK: - Заполнить ячейку
+    // MARK: - Заполнить ячейку (deprecated)
     func fillCell(_ news: News, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         nameLabel.text = "\(news.Name)"
         newsTextView.text = "\(news.TextNews)"
@@ -43,5 +43,20 @@ class NewsCell: UITableViewCell {
          // Установить картинку из кеша
         avatarImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: news.Avatar)
         newsImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: news.Photo)
+    }
+    
+    // MARK: - Заполнить ячейку используя фабрику
+    func fillCellFactory(with viewModel: NewsViewModel, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
+        nameLabel.text = viewModel.Name
+        newsTextView.text = viewModel.TextNews
+        likesLabel.text = viewModel.Likes
+        commentsLabel.text = viewModel.Comments
+        repostsLabel.text = viewModel.Reposts
+        viewsLabel.text = viewModel.Views
+        // Установить дату из кеша
+        postDataLabel.text = dataProcessing.getDateText(forIndexPath: indexPath, andTimestemp: viewModel.Date)
+         // Установить картинку из кеша
+        avatarImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: viewModel.Avatar)
+        newsImageView.image = dataProcessing.photo(atIndexpath: indexPath, byUrl: viewModel.Photo)
     }
 }
