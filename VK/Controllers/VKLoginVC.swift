@@ -57,10 +57,10 @@ class VKLoginVC: UIViewController {
     // Вернуть данные пользователя
     func loadData() {
         let service = VKService()
-        service.getPhoto()
-        service.getFriend()
-        service.getGroup()
-        service.getGroupSearch(search: "Music")
+        VKServiceProxy(vkService: service).getPhoto()
+        VKServiceProxy(vkService: service).getFriend()
+        VKServiceProxy(vkService: service).getGroup()
+        VKServiceProxy(vkService: service).getGroupSearch(search: "Music")
     }
 }
 

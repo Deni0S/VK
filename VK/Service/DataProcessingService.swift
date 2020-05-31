@@ -11,7 +11,6 @@ import Alamofire
 
 // Сервис обработки данных
 class DataProcessingService {
-    let service = VKService()
     private let casheLifeTime: TimeInterval = 2 * 24 * 60 * 60
     // Словарь с изображениями в кэше для оперативной памяти
     private var images = [String: UIImage] ()

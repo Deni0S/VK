@@ -27,7 +27,7 @@ class GroupSearchVC: UITableViewController, UISearchBarDelegate {
     // MARK: - Search Bar Delegate
         
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        service.getGroupSearch(search: searchText) { [weak self] groupsSearch, error in
+        VKServiceProxy(vkService: service).getGroupSearch(search: searchText) { [weak self] groupsSearch, error in
             if let error = error {
                 print(error)
                 return

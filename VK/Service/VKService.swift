@@ -50,7 +50,15 @@ enum VKServiceMethod {
     }
 }
 
-class VKService {
+protocol VKServiceInterface {
+    func getPhoto(id: String?, complition: ((Error?) -> Void)?)
+    func getFriend(complition: ((Error?) -> Void)?)
+    func getGroup(complition: ((Error?) -> Void)?)
+    func getGroupSearch(search: String, complition: (([Group]?, (Error?)) -> Void)?)
+    func getNews(dateLastNews: Double?, isRefresh: Bool, complition: ((Error?) -> Void)?)
+}
+
+class VKService: VKServiceInterface {
     let baseURL: String = "https://api.vk.com/method/"
     var baseParameters: String {
         return "access_token=\(Session.instance.token)&v=5.101"

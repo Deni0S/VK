@@ -99,7 +99,7 @@ class FriendVC: UITableViewController, UISearchBarDelegate {
     // Загрузить данные
     func loadFriendData() {
         let service = VKService()
-        service.getFriend() { [weak self] error in
+        VKServiceProxy(vkService: service).getFriend() { [weak self] error in
             if let error = error {
                 print(error)
                 return

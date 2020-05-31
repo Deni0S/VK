@@ -44,6 +44,7 @@
 		92A1BF8B244CF09800EFD181 /* NewsGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF8A244CF09800EFD181 /* NewsGroups.swift */; };
 		92A1BF8D244E4FBA00EFD181 /* DataProcessingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */; };
 		92A8156723FF29FC00C56932 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A8156623FF29FC00C56932 /* Session.swift */; };
+		92A9F4642483980300512916 /* VKServiceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A9F4632483980300512916 /* VKServiceProxy.swift */; };
 		92C011B523DDD4360095C5CA /* AvatarViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */; };
 		92C011B923DF93880095C5CA /* PhotoFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011B823DF93880095C5CA /* PhotoFriendVC.swift */; };
 		92C011BB23DFA03A0095C5CA /* PhotoFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */; };
@@ -117,6 +118,7 @@
 		92A1BF8A244CF09800EFD181 /* NewsGroups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsGroups.swift; sourceTree = "<group>"; };
 		92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProcessingService.swift; sourceTree = "<group>"; };
 		92A8156623FF29FC00C56932 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		92A9F4632483980300512916 /* VKServiceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKServiceProxy.swift; sourceTree = "<group>"; };
 		92C011B423DDD4360095C5CA /* AvatarViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarViewCustom.swift; sourceTree = "<group>"; };
 		92C011B823DF93880095C5CA /* PhotoFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendVC.swift; sourceTree = "<group>"; };
 		92C011BA23DFA03A0095C5CA /* PhotoFriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFriendCell.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		92A8156523FF29D500C56932 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				92A9F4632483980300512916 /* VKServiceProxy.swift */,
 				92F39344240465F9005A3AC4 /* VKService.swift */,
 				92A8156623FF29FC00C56932 /* Session.swift */,
 				92A1BF8C244E4FBA00EFD181 /* DataProcessingService.swift */,
@@ -627,6 +630,7 @@
 				92A8156723FF29FC00C56932 /* Session.swift in Sources */,
 				92A1BF8B244CF09800EFD181 /* NewsGroups.swift in Sources */,
 				929A32D423D64CB4006B43D6 /* GroupCell.swift in Sources */,
+				92A9F4642483980300512916 /* VKServiceProxy.swift in Sources */,
 				92618696247600450043C76C /* User_Swift.swift in Sources */,
 				929A32CE23D63E00006B43D6 /* FriendVC.swift in Sources */,
 				9286865F24469F6A00122C8F /* CustomInteractionNavigationControllerViewController.swift in Sources */,

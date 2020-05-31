@@ -33,7 +33,7 @@ class PhotoFriendVC: UICollectionViewController {
     func loadFriendData() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
             let service = VKService()
-            service.getPhoto(id: Session.instance.photoUserId) { [weak self] error in
+            VKServiceProxy(vkService: service).getPhoto(id: Session.instance.photoUserId) { [weak self] error in
                 if let error = error {
                     print(error)
                     return

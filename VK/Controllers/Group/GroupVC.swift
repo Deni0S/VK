@@ -26,7 +26,7 @@ class GroupVC: UITableViewController {
     // Загрузить данные
     func loadGroupData () {
         let service = VKService()
-        service.getGroup() { [weak self] error in
+        VKServiceProxy(vkService: service).getGroup() { [weak self] error in
             if let error = error {
                 print(error)
                 return

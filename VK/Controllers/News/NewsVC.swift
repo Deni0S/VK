@@ -64,7 +64,7 @@ class NewsVC: UITableViewController {
     func loadNewsData(isRefresh: Bool = false) {
         // Убеждаемся что мы не в процессе загрузки данных
         isLoading = true
-        service.getNews(isRefresh: isRefresh) { [weak self] error in
+        VKServiceProxy(vkService: service).getNews(isRefresh: isRefresh) { [weak self] error in
             if let error = error {
                 print(error)
                 return
