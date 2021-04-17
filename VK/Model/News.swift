@@ -1,16 +1,9 @@
-//
-//  News.swift
-//  VK
-//
-//  Created by Денис Баринов on 19.4.20.
-//  Copyright © 2020 Денис Баринов. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 import RealmSwift
 
-class News: Object {
+final class News: Object {
+    
     @objc dynamic var PostId: Int = 0
     @objc dynamic var SourceId: Int = 0
     @objc dynamic var TypeNews: String = ""
@@ -25,8 +18,12 @@ class News: Object {
     @objc dynamic var Comments: Int = 0
     @objc dynamic var Reposts: Int = 0
     @objc dynamic var Views: Int = 0
+    
+    // MARK: - Initializers
+    
     convenience init(json: JSON) {
         self.init()
+        
         self.PostId = json["post_id"].intValue
         self.SourceId = json["source_id"].intValue
         self.TypeNews = json["type"].stringValue
@@ -52,7 +49,7 @@ class News: Object {
         self.Reposts = json["reposts"]["count"].intValue
         self.Views = json["views"]["count"].intValue
     }
-    override static func primaryKey() -> String? {
-        return "PostId"
-    }
+    
+    override static func primaryKey() -> String? { "PostId" }
+    
 }
