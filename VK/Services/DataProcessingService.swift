@@ -3,20 +3,20 @@ import Alamofire
 
 // Сервис обработки данных
 final class DataProcessingService {
-    
+
     private let casheLifeTime: TimeInterval = 2 * 24 * 60 * 60
     // Словарь с изображениями в кэше для оперативной памяти
     private var images = [String: UIImage] ()
     // Словарь с датой в кэше для оперативной памяти
     var dateTextCache: [IndexPath: String] = [:]
-    
+
     // Преобразовать дату в установленый формат
     private var dateFormatter: DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         return dateFormatter
     }
-    
+
     // Кешировать дату
     func getDateText(forIndexPath indexPath: IndexPath, andTimestemp timestamp: Double) -> String {
         if let stringDate = dateTextCache[indexPath] {
@@ -28,7 +28,7 @@ final class DataProcessingService {
             return stringDate
         }
     }
-    
+
     // Статические свойства папки
     private static let pathName: String = {
         let pathName = "images"
@@ -45,7 +45,7 @@ final class DataProcessingService {
         }
         return pathName
     } ()
-    
+
     // Получить путь к файлу на основе URL
     private func getFilePath(url: String) -> String? {
         guard let cachesDirectory = FileManager.default.urls(for: .cachesDirectory,
@@ -55,7 +55,7 @@ final class DataProcessingService {
         let hasheName = String(describing: url.hashValue)
         return cachesDirectory.appendingPathComponent(DataProcessingService.pathName + "/" + hasheName).path
     }
-    
+
     // Сохранить изображение в файловой системе
     private func saveImageToCache(url: String, image: UIImage) {
         guard let fileName = getFilePath(url: url) else { return }
@@ -64,7 +64,7 @@ final class DataProcessingService {
                                        contents: data,
                                        attributes: nil)
     }
-    
+
     // Загрузить изображение из файловой системы
     private func getImageFromCache(url: String) -> UIImage? {
         guard let fileName = getFilePath(url: url),
@@ -76,7 +76,7 @@ final class DataProcessingService {
         images[url] = image
         return image
     }
-    
+
     // Загрузить фото из сети
     private func loadPhoto(atIndexpath indexPath: IndexPath, byUrl url: String) {
         AF.request(url).responseData() { [weak self] response in
@@ -90,24 +90,24 @@ final class DataProcessingService {
             }
         }
     }
-    
+
     // Предоставить изображение по url
     func photo(atIndexpath indexPath: IndexPath, byUrl url: String) -> UIImage? {
         var image: UIImage?
         // Искать изображение в кэше оперативной памяти
         if let photo = images[url] {
             image = photo
-        // Искать Изображение в кэше файловой системы
+            // Искать Изображение в кэше файловой системы
         } else if let photo = getImageFromCache(url: url) {
             image = photo
-        // Загрузить изображение из сети
+            // Загрузить изображение из сети
         } else {
             loadPhoto(atIndexpath: indexPath,
                       byUrl: url)
         }
         return image
     }
-    
+
     private let container: DataReloadable
     init(container: UITableView) {
         self.container = Table(table: container)
@@ -124,7 +124,7 @@ fileprivate protocol DataReloadable {
 }
 
 private extension DataProcessingService {
-    
+
     class Table: DataReloadable {
         let table: UITableView
         init(table: UITableView) {
@@ -132,10 +132,10 @@ private extension DataProcessingService {
         }
         func reloadRow(atIndexpath indexPath: IndexPath) {
             table.reloadRows(at: [indexPath],
-                             with: .none)
+                             with: .automatic)
         }
     }
-    
+
     class Collection: DataReloadable {
         let collection: UICollectionView
         init(collection: UICollectionView) {
@@ -145,5 +145,4 @@ private extension DataProcessingService {
             collection.reloadItems(at: [indexPath])
         }
     }
-    
 }

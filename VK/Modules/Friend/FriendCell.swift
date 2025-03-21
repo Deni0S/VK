@@ -1,31 +1,34 @@
 import UIKit
 
 final class FriendCell: UITableViewCell {
-    
+
     // MARK: - IBOutlets
-    
+
     @IBOutlet private var friendAvatar: UIImageView! {
         // Отключить автоматическое создание constraints
-        didSet { friendAvatar.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            friendAvatar.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     @IBOutlet private var friendName: UILabel! {
         // Отключить автоматическое создание constraints
-        didSet { friendName.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            friendName.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     @IBOutlet private var avatarAnimationButton: UIButton!
-    
+
     // MARK: - Lifecycle
-    
+
     // Переопределить метод рассчета позиций элементов
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         manualLayout()
         friendNamePhotoFrame()
     }
-    
+
     // MARK: - Public Methods
-    
+
     /// Заполнить ячейку полученными данными
     public func fillCell(_ friend: User_Swift, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         friendName.text = "\(friend.FirstName) \(friend.LastName)"
@@ -35,20 +38,19 @@ final class FriendCell: UITableViewCell {
                                                   byUrl: friend.PhotoFriend)
         manualLayout()
     }
-    
+
     /// Установить действия в ячейку
     func setupAction() {
         avatarAnimationButton.addTarget(self,
                                         action: #selector(avatarAnimationButtonOnTap),
                                         for: .touchDown)
     }
-    
 }
 
 // MARK: - Private Methods
 
 private extension FriendCell {
-    
+
     // Сверстать вручную
     func manualLayout() {
         let photoImageSize: CGFloat = 390
@@ -57,7 +59,7 @@ private extension FriendCell {
                                     size: CGSize(width: bounds.maxX,
                                                  height: photoImageSize))
     }
-    
+
     // Рассчитать размер текста в UILabel
     func getLabelSize(text: String, font: UIFont) -> CGSize {
         // Максимальная ширина текста
@@ -75,7 +77,7 @@ private extension FriendCell {
                           height: ceil(Double(rect.size.height)))
         return size
     }
-    
+
     // Сверстать friendName
     func friendNamePhotoFrame() {
         // Размер текста
@@ -88,7 +90,7 @@ private extension FriendCell {
         friendName.frame = CGRect(origin: friendNamePhotoOrigin,
                                   size: friendNamePhotoSize)
     }
-    
+
     @objc func avatarAnimationButtonOnTap() {
         self.friendAvatar.frame.size = CGSize(width: 30,
                                               height: 30)
@@ -98,9 +100,8 @@ private extension FriendCell {
                        initialSpringVelocity: 0.5,
                        options: .curveEaseIn,
                        animations: { [weak self] in
-                        self?.friendAvatar.frame.size = CGSize(width: 70,
-                                                               height: 70)
-                       })
+            self?.friendAvatar.frame.size = CGSize(width: 70,
+                                                   height: 70)
+        })
     }
-
 }

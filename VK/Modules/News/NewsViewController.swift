@@ -14,39 +14,37 @@ struct NewsViewModel {
 }
 
 final class NewsViewController: UITableViewController {
-    
+
     // MARK: - Private Properties
-    
+
     private let session = Session.instance
     private var newsTokenRealm: NotificationToken?
     private var dataProcessing: DataProcessingService?
     private var isLoading = false
     private let viewModelFactory = NewsViewModelFactory()
     private var viewModel: [NewsViewModel] = []
-    
+
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         // Загрузить данные
         loadNewsData()
         // Установить refresh сontrol
         setupRefreshControl()
     }
-    
 }
 
 // MARK: - Private Methods
 
 private extension NewsViewController {
-    
+
     func setupView() {
         self.tableView.tableFooterView = UIView()
         // Проинициализируем сервис обработки данных
@@ -54,7 +52,7 @@ private extension NewsViewController {
         // Назначаем себя делегатом Data Source
         self.tableView.prefetchDataSource = self
     }
-    
+
     // Загрузить данные
     func loadNewsData(isRefresh: Bool = false) {
         // Убеждаемся что мы не в процессе загрузки данных
@@ -71,14 +69,14 @@ private extension NewsViewController {
             }
         }
     }
-    
+
     func setupRefreshControl() {
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Загружаю новости")
         refreshControl?.tintColor = .rgbaCache(128.0, 128.0, 128.0, 1.0)
         refreshControl?.addTarget(self, action: #selector(refreshNews), for: .valueChanged)
     }
-    
+
     // Обновить новости
     @objc func refreshNews() {
         refreshControl?.beginRefreshing()
@@ -90,7 +88,7 @@ private extension NewsViewController {
             self?.refreshControl?.endRefreshing()
         }
     }
-    
+
     // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadNewsFromRealm() {
         let realm = try! Realm()
@@ -124,17 +122,16 @@ private extension NewsViewController {
             }
         })
     }
-    
 }
 
 // MARK: - Table view data source
-    
+
 extension NewsViewController {
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int { 1 }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { viewModel.count }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = NewsCell()
         // Получаем ячейку из пула
@@ -147,15 +144,14 @@ extension NewsViewController {
         cell.fillCellFactory(with: viewModel[indexPath.row], indexPath, dataProcessing!)
         return cell
     }
-    
+
     // TODO: Доделать авторазмер под фотографию
-    
 }
 
 // MARK: - UITableViewDataSourcePrefetching
 
 extension NewsViewController: UITableViewDataSourcePrefetching {
-    
+
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         // Выбираем максимальный номер отбражаемой секции
         print(indexPaths)
@@ -166,5 +162,4 @@ extension NewsViewController: UITableViewDataSourcePrefetching {
             loadNewsData(isRefresh: true)
         }
     }
-    
 }

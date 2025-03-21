@@ -1,30 +1,33 @@
 import UIKit
 
 final class GroupSearchCell: UITableViewCell {
-    
+
     // MARK: - IBOutlets
-    
+
     @IBOutlet private var groupSearchAvatar: UIImageView! {
         // Отключить автоматическое создание constraints
-        didSet { groupSearchAvatar.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            groupSearchAvatar.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     @IBOutlet private var groupSearchName: UILabel! {
         // Отключить автоматическое создание constraints
-        didSet { groupSearchName.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            groupSearchName.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
-    
+
     // MARK: - Lifecycle
-    
+
     // Переопределить метод рассчета позиций элементов
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         manualLayout()
         groupSearchAvatarFrame()
     }
-    
+
     // MARK: - Public Methods
-    
+
     /// Заполнить ячейку полученными данными и действиями
     public func fillCell(_ group: Group, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         groupSearchName.text = "\(group.Name)"
@@ -33,13 +36,12 @@ final class GroupSearchCell: UITableViewCell {
         manualLayout()
         groupSearchAvatarFrame()
     }
-    
 }
 
 // MARK: - Private Methods
 
 private extension GroupSearchCell{
-    
+
     // Сверстать вручную
     func manualLayout() {
         let photoImageSize: CGFloat = 390
@@ -48,7 +50,7 @@ private extension GroupSearchCell{
                                          size: CGSize(width: bounds.maxX,
                                                       height: photoImageSize))
     }
-    
+
     // Рассчитать размер текста в UILabel
     func getLabelSize(text: String, font: UIFont) -> CGSize {
         // Максимальная ширина текста
@@ -66,7 +68,7 @@ private extension GroupSearchCell{
                           height: ceil(Double(rect.size.height)))
         return size
     }
-    
+
     // Сверстать nameGroup
     func groupSearchAvatarFrame() {
         // Размер текста
@@ -79,5 +81,4 @@ private extension GroupSearchCell{
         groupSearchName.frame = CGRect(origin: nameGroupPhotoOrigin,
                                        size: nameGroupPhotoSize)
     }
-    
 }

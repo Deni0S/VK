@@ -23,7 +23,6 @@ final class LoginViewController: UIViewController {
     // Сразу после загрузки ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
     }
     
@@ -172,7 +171,6 @@ private extension LoginViewController {
     
     // Кнопка выйти
     @IBAction func logOutVK(unwindSegue: UIStoryboardSegue) { }
-    
 }
 
 // MARK: - UIViewControllerTransitioningDelegate
@@ -191,5 +189,4 @@ extension LoginViewController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         TransitionAnimation(isPresented: false, typeController: .login)
     }
-    
 }

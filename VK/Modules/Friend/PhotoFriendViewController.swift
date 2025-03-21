@@ -1,46 +1,46 @@
 import UIKit
 import RealmSwift
 
-private let reuseIdentifier = "Cell"
-
 final class PhotoFriendViewController: UICollectionViewController {
-    
+
     // MARK: - Private Properties
-    
+
     private var photos: [Photo] = []
     private var photoToken: NotificationToken?
-    private var buttons: [UIButton] = []
-    private var dataProcessing: DataProcessingService?
+    private lazy var dataProcessing = DataProcessingService.init(container: self.collectionView)
 
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        // Загрузим данные
-        loadFriendData()
-        // Проинициализируем сервис обработки данных
-        dataProcessing = DataProcessingService.init(container: self.collectionView)
+        setupView()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
+
         if let fullPhotoVC = segue.destination as? FullPhotoViewController,
            let indexPath = collectionView.indexPathsForSelectedItems?.first {
             fullPhotoVC.photos = photos
             fullPhotoVC.indexPath = indexPath.row
         }
     }
-    
 }
 
 // MARK: - Private Methods
 
 private extension PhotoFriendViewController {
-    
+
+    func setupView() {
+        // Настроем размер ячеек коллекции
+        let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: view.bounds.width, height: 50)
+        // Зарегистрируем класс ячейки
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        // Загрузим данные
+        loadFriendData()
+    }
+
     // Загрузить данные
     func loadFriendData() {
         DispatchQueue.global().asyncAfter(deadline: .now() + 1) {
@@ -55,7 +55,7 @@ private extension PhotoFriendViewController {
             Session.instance.photoUserId = nil
         }
     }
-    
+
     // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
         let realm = try! Realm()
@@ -88,7 +88,6 @@ private extension PhotoFriendViewController {
             }
         })
     }
-    
 }
 
 // MARK: - UICollectionViewDataSource
@@ -97,15 +96,12 @@ extension PhotoFriendViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int { 1 }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { photos.count }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PhotoFriendCell", for: indexPath) as! PhotoFriendCell
         // Заполнить ячейку полученными данными и действиями
-        cell.fillCell(photos[indexPath.row],
-                      indexPath, dataProcessing!)
+        cell.fillCell(photos[indexPath.row], indexPath, dataProcessing)
         return cell
     }
-
 }

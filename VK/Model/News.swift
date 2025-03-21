@@ -3,7 +3,7 @@ import SwiftyJSON
 import RealmSwift
 
 final class News: Object {
-    
+
     @objc dynamic var PostId: Int = 0
     @objc dynamic var SourceId: Int = 0
     @objc dynamic var TypeNews: String = ""
@@ -18,12 +18,12 @@ final class News: Object {
     @objc dynamic var Comments: Int = 0
     @objc dynamic var Reposts: Int = 0
     @objc dynamic var Views: Int = 0
-    
+
     // MARK: - Initializers
-    
+
     convenience init(json: JSON) {
         self.init()
-        
+
         self.PostId = json["post_id"].intValue
         self.SourceId = json["source_id"].intValue
         self.TypeNews = json["type"].stringValue
@@ -49,7 +49,6 @@ final class News: Object {
         self.Reposts = json["reposts"]["count"].intValue
         self.Views = json["views"]["count"].intValue
     }
-    
+
     override static func primaryKey() -> String? { "PostId" }
-    
 }

@@ -1,5 +1,5 @@
 import UIKit
-import WebKit
+@preconcurrency import WebKit
 
 final class VKLoginViewController: UIViewController {
     
@@ -21,7 +21,6 @@ final class VKLoginViewController: UIViewController {
             webView.load(request)
         }
     }
-    
 }
 
 // MARK: - Private Methods
@@ -121,7 +120,6 @@ extension VKLoginViewController: WKNavigationDelegate {
         // Обязательно нужно вернуть разрешает (allow) или запрещает (cancel) загрузить адреc
         decisionHandler(.allow)
     }
-    
 }
 
 

@@ -1,31 +1,34 @@
 import UIKit
 
 final class GroupCell: UITableViewCell {
-    
+
     // MARK: - IBOutlets
-    
+
     @IBOutlet private var groupAvatar: UIImageView! {
         // Отключить автоматическое создание constraints
-        didSet { groupAvatar.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            groupAvatar.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     @IBOutlet private var groupName: UILabel! {
         // Отключить автоматическое создание constraints
-        didSet { groupName.translatesAutoresizingMaskIntoConstraints = false }
+        didSet {
+            groupName.translatesAutoresizingMaskIntoConstraints = false
+        }
     }
     @IBOutlet private var avatarAnimationButton: UIButton!
-    
+
     // MARK: - Lifecycle
-    
+
     // Переопределить метод рассчета позиций элементов
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         manualLayout()
         groupAvatarFrame()
     }
-    
+
     // MARK: - Public Methods
-    
+
     /// Заполнить ячейку полученными данными и действиями
     public func fillCell(_ group: Group, _ indexPath: IndexPath, _ dataProcessing: DataProcessingService) {
         groupName.text = "\(group.Name)"
@@ -38,13 +41,12 @@ final class GroupCell: UITableViewCell {
                                         for: .touchDown)
         manualLayout()
     }
-
 }
 
 // MARK: - Private Methods
 
 private extension GroupCell {
-    
+
     // Сверстать вручную
     func manualLayout() {
         let photoImageSize: CGFloat = 390
@@ -53,7 +55,7 @@ private extension GroupCell {
                                    size: CGSize(width: bounds.maxX,
                                                 height: photoImageSize))
     }
-    
+
     // Рассчитать размер текста в UILabel
     func getLabelSize(text: String, font: UIFont) -> CGSize {
         // Максимальная ширина текста
@@ -71,7 +73,7 @@ private extension GroupCell {
                           height: ceil(Double(rect.size.height)))
         return size
     }
-    
+
     // Сверстать nameGroup
     func groupAvatarFrame() {
         // Размер текста
@@ -84,7 +86,7 @@ private extension GroupCell {
         groupName.frame = CGRect(origin: nameGroupPhotoOrigin,
                                  size: nameGroupPhotoSize)
     }
-    
+
     @objc func avatarAnimationButtonOnTap() {
         self.groupAvatar.frame.size = CGSize(width: 30, height: 30)
         UIView.animate(withDuration: 0.9,
@@ -93,8 +95,7 @@ private extension GroupCell {
                        initialSpringVelocity: 0.5,
                        options: .curveEaseIn,
                        animations: {
-                        self.groupAvatar.frame.size = CGSize(width: 70, height: 70)
-                       })
+            self.groupAvatar.frame.size = CGSize(width: 70, height: 70)
+        })
     }
-
 }

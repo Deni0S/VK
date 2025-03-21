@@ -2,25 +2,24 @@ import UIKit
 import RealmSwift
 
 final class GroupViewController: UITableViewController {
-    
+
     // MARK: - Private Properties
-    
+
     private var groups: [Group] = []
     private var groupToken: NotificationToken?
     private var dataProcessing: DataProcessingService?
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.tableView.tableFooterView = UIView()
         // Загрузим данные
         loadGroupData()
         // Проинициализируем сервис обработки данных
         dataProcessing = DataProcessingService.init(container: self.tableView)
     }
-    
 }
 
 // MARK: - Private Methods
@@ -38,7 +37,7 @@ private extension GroupViewController {
             self?.loadDataFromRealm()
         }
     }
-    
+
     // Загрузить данные из Realm и подписаться на изменения Notifocations
     func loadDataFromRealm() {
         let realm = try! Realm()
@@ -92,13 +91,12 @@ private extension GroupViewController {
             }
         }
     }
-    
 }
 
 // MARK: - Table view data source
 
 extension GroupViewController {
-    
+
     override func numberOfSections(in tableView: UITableView) -> Int { 1 }
 
     // Задаем количество строк равное количесву элементов в массиве
@@ -123,5 +121,4 @@ extension GroupViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
 }

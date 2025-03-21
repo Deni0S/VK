@@ -10,33 +10,33 @@ enum VKServiceMethod {
     case getGroup
     case getGroupSearch
     case getNews
-    
+
     var methodName: String {
         switch self {
-            case .getPhoto: return "photos.getAll"
-            case .getFriend: return "friends.get"
-            case .getGroup: return "groups.get"
-            case .getGroupSearch: return "groups.search"
-            case .getNews: return "newsfeed.get"
+        case .getPhoto: return "photos.getAll"
+        case .getFriend: return "friends.get"
+        case .getGroup: return "groups.get"
+        case .getGroupSearch: return "groups.search"
+        case .getNews: return "newsfeed.get"
         }
     }
-    
+
     var parameters: String {
         switch self {
-            case .getPhoto: return "count=100"
-            case .getFriend: return "fields=photo_200_orig"
-            case .getGroup: return "extended=1"
-            case .getGroupSearch: return "count=100"
-            case .getNews: return "count=20&filters=post,photo&return_banned=0"
+        case .getPhoto: return "count=100"
+        case .getFriend: return "fields=photo_200_orig"
+        case .getGroup: return "extended=1"
+        case .getGroupSearch: return "count=100"
+        case .getNews: return "count=20&filters=post,photo&return_banned=0"
         }
     }
-    
+
 }
 
 final class VKService: VKServiceInterface {
-    
+
     // MARK: - Private Properties
-    
+
     private let baseURL: String = "https://api.vk.com/method/"
     private var baseParameters: String { "access_token=\(Session.instance.token)&v=5.101" }
     private var additionalParametr = ""
@@ -46,9 +46,9 @@ final class VKService: VKServiceInterface {
     private let groupSearchQueue = DispatchQueue(label: "GroupSearch Queue", qos: .utility)
     private let newsQueue = DispatchQueue(label: "News Queue", qos: .utility)
     private var nextFrom = ""
-    
+
     // MARK: - Public Methods
-    
+
     // Фотографии
     func getPhoto(id: String? = nil, complition: ((Error?) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для фотографий
@@ -86,7 +86,7 @@ final class VKService: VKServiceInterface {
             }
         }
     }
-    
+
     // Друзья
     func getFriend(complition: ((Error?) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для друзей
@@ -118,7 +118,7 @@ final class VKService: VKServiceInterface {
             }
         }
     }
-    
+
     // Группы
     func getGroup(complition: ((Error?) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для групп
@@ -149,7 +149,7 @@ final class VKService: VKServiceInterface {
             }
         }
     }
-    
+
     // Поиск групп
     func getGroupSearch(search: String, complition: (([Group]?, (Error?)) -> Void)? = nil) {
         // Перейти в последовательную, фоновую очередь для поиска по группам
@@ -172,7 +172,7 @@ final class VKService: VKServiceInterface {
                         let groupSearch = json["response"]["items"].arrayValue.map { Group(json: $0) }
                         print("\nПоиск групп:\n\(groupSearch)")
                         // Сохранить группы в Firestore
-//                    self.saveGroupSearchFirestore(groupSearch)
+                        //                    self.saveGroupSearchFirestore(groupSearch)
                         // Вызвать кусочек кода в главном потоке асинхронно
                         DispatchQueue.main.async {
                             // Передадим данные через замыкание
@@ -237,13 +237,12 @@ final class VKService: VKServiceInterface {
             }
         }
     }
-    
 }
 
 // MARK: - Private Methods
-    
+
 private extension VKService {
-    
+
     // Получить URL
     func getURLpath(for method: VKServiceMethod) -> String {
         var param = ""
@@ -253,7 +252,7 @@ private extension VKService {
         let URLpath = baseURL + method.methodName + "?" + "\(additionalParametr)" + method.parameters + param + baseParameters
         return URLpath
     }
-    
+
     // Сохранить фото в Realm
     func savePhotoData(_ vk: [Photo]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
@@ -270,7 +269,7 @@ private extension VKService {
             }
         }
     }
-    
+
     // Сохранить друзей в Realm
     func saveFriendData(_ vk: [User]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
@@ -287,7 +286,7 @@ private extension VKService {
             }
         }
     }
-    
+
     // Сохранить группы в Realm
     func saveGroupData(_ vk: [Group]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
@@ -305,25 +304,24 @@ private extension VKService {
         }
     }
 
-    /* // Сохранить группы в Firestore
-    func saveGroupSearchFirestore(_ vk: [Group]) {
-        // Перейти в последовательную, фоновую очередь для поиска по группам
-        groupSearchQueue.sync(flags: .barrier) {
-            let db = Firestore.firestore()
-            db.collection("id\(Session.instance.userid)")
-                .document("GroupSearch")
-                .setData(vk.map { $0.toFirestore() }.reduce([:]) {
-                            $0.merging($1) { (current, _) in current }
-                }
-            ) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                } else { print("data saved") }
-            }
-        }
-    }
-     */
-    
+    // Сохранить группы в Firestore
+//    func saveGroupSearchFirestore(_ vk: [Group]) {
+//        // Перейти в последовательную, фоновую очередь для поиска по группам
+//        groupSearchQueue.sync(flags: .barrier) {
+//            let db = Firestore.firestore()
+//            db.collection("id\(Session.instance.userid)")
+//                .document("GroupSearch")
+//                .setData(vk.map { $0.toFirestore() }.reduce([:]) {
+//                    $0.merging($1) { (current, _) in current }
+//                }
+//                ) { error in
+//                    if let error = error {
+//                        print(error.localizedDescription)
+//                    } else { print("data saved") }
+//                }
+//        }
+//    }
+
     // Сохранить в Realm источники новостей
     func saveSourceNews(_ pr: [NewsProfiles], _ gr: [NewsGroups]) {
         let realm = try! Realm()
@@ -340,7 +338,7 @@ private extension VKService {
             print(error)
         }
     }
-    
+
     // Сохранить в Realm новости вместе с источниками
     func saveNewsData(_ ns: [News]) {
         // Выполнить в одиночку, чтобы приложение не вылетало при удалении Realm
@@ -357,7 +355,7 @@ private extension VKService {
             }
         }
     }
-    
+
     // Добавить в Realm обновленные новости
     func refreshNewsData(_ ns: [News]) {
         newsQueue.async {
@@ -371,5 +369,4 @@ private extension VKService {
             }
         }
     }
-    
 }
